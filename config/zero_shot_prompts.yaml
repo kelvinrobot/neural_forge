@@ -1,0 +1,117 @@
+# Text prompts for MedSigLIP zero-shot classification and YOLOE open-vocabulary detection.
+# Each label is represented by the average embedding of its prompts. A trained head file named
+# <task>.npz in the trained heads directory replaces zero-shot for that task without code changes.
+
+lesion_detection_prompts:
+  - skin lesion
+  - rash
+  - red spot
+  - blister
+  - pustule
+  - pimple
+  - mole
+  - scaly patch
+  - discoloured skin patch
+  - pale skin patch
+  - dark skin patch
+  - skin ulcer
+
+tasks:
+  eye_appearance:
+    labels:
+      normal_eye:
+        - a close-up photo of healthy eyes with white sclera
+        - a photo of normal human eyes without redness
+      conjunctivitis:
+        - a close-up photo of an eye with conjunctivitis and red inflamed conjunctiva
+        - a photo of a pink eye with bloodshot sclera and discharge
+      xanthelasma:
+        - a close-up photo of xanthelasma, yellow plaques on the eyelids
+        - a photo of yellowish fatty deposits on the skin around the eyes
+      corneal_arcus:
+        - a close-up photo of an eye with corneal arcus, a grey white ring around the iris
+        - a photo of arcus senilis around the cornea
+
+  oral_interior:
+    labels:
+      normal_mouth:
+        - a photo of a healthy pink tongue and normal mouth interior
+        - a clinical photo of a normal oral cavity
+      oral_thrush:
+        - a photo of oral thrush with white curd-like plaques on the tongue
+        - a clinical photo of oral candidiasis in the mouth
+      pale_tongue:
+        - a photo of a very pale tongue as seen in anaemia
+        - a clinical photo of a pallid whitish tongue
+      blue_tongue:
+        - a photo of a bluish purple tongue as seen in cyanosis
+        - a clinical photo of central cyanosis of the tongue
+
+  gums:
+    labels:
+      healthy_gums:
+        - a photo of healthy pink gums with firm margins
+        - a dental photo of normal gingiva
+      gingival_inflammation:
+        - a photo of red swollen inflamed gums
+        - a dental photo of gingivitis with bleeding gum margins
+
+  lip_corners:
+    labels:
+      normal_lip_corners:
+        - a close-up photo of normal healthy corners of the mouth
+        - a photo of smooth lip corners without cracks
+      angular_cheilitis:
+        - a close-up photo of angular cheilitis with cracked red corners of the mouth
+        - a photo of fissured inflamed skin at the corner of the lips
+
+  finger_clubbing:
+    labels:
+      normal_finger:
+        - a side view photo of a normal fingertip and fingernail
+        - a photo of a finger with a normal nail angle
+      clubbed_finger:
+        - a side view photo of a clubbed finger with a bulbous fingertip
+        - a clinical photo of digital clubbing with a curved nail and lost nail angle
+
+  knuckle_swelling:
+    labels:
+      normal_knuckles:
+        - a photo of the back of a hand with normal knuckles
+        - a photo of healthy finger joints without swelling
+      swollen_knuckles:
+        - a photo of a hand with swollen inflamed knuckles
+        - a clinical photo of rheumatoid arthritis with swollen finger joints
+
+  skin_lesion:
+    labels:
+      mpox:
+        - a clinical photo of mpox skin lesions, firm umbilicated pustules
+        - a photo of monkeypox rash with deep-seated vesicles
+      chickenpox:
+        - a clinical photo of chickenpox, itchy blisters on red skin at different stages
+        - a photo of varicella rash with vesicles and crusts
+      measles_rash:
+        - a clinical photo of measles rash, red blotchy maculopapular rash
+        - a photo of a widespread measles exanthem on the skin
+      ringworm:
+        - a clinical photo of ringworm, a red scaly ring-shaped patch
+        - a photo of tinea corporis with a raised border and clear centre
+      eczema:
+        - a clinical photo of eczema, dry red itchy rough skin
+        - a photo of atopic dermatitis patches
+      acne:
+        - a clinical photo of acne with pimples, blackheads and pustules
+        - a photo of acne vulgaris on facial skin
+      normal_skin:
+        - a close-up photo of normal healthy skin
+        - a photo of clear skin without any lesion or rash
+
+  skin_patch_screen:
+    labels:
+      normal_skin:
+        - a close-up photo of normal healthy skin
+        - a photo of clear even skin
+      abnormal_skin:
+        - a close-up photo of a skin lesion, rash or abnormal patch
+        - a photo of skin with spots, blisters, scaling or discolouration

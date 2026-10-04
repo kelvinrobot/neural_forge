@@ -1,0 +1,457 @@
+# Sign-to-condition rules used by the reasoning agent and as the rule-based fallback.
+# EDUCATIONAL DEFAULTS ONLY. A rule matches when every code in all_of is present and, if any_of is
+# non-empty, at least one code in any_of is present. Flag codes are produced by Python thresholds.
+
+flag_severity_urgency:
+  low: none
+  moderate: routine
+  high: soon
+
+rules:
+  # Face
+  - id: central_facial_weakness
+    areas: [face]
+    condition: Central facial weakness pattern (as seen in stroke)
+    all_of: [facial_asymmetry_forehead_sparing]
+    any_of: []
+    referral_urgency: emergency
+    next_tests: [Immediate in-person neurological assessment, FAST stroke check by a clinician]
+    explanation: Lower facial weakness with preserved forehead movement suggests a problem above the facial nerve nucleus, such as a stroke.
+  - id: peripheral_facial_weakness
+    areas: [face]
+    condition: Peripheral facial nerve weakness (Bell's-palsy-like pattern)
+    all_of: [whole_side_facial_weakness]
+    any_of: []
+    referral_urgency: urgent
+    next_tests: [In-person facial nerve examination within 72 hours, Ear and parotid examination]
+    explanation: Weakness of the whole side of the face including the forehead points to the facial nerve itself.
+  - id: facial_muscle_asymmetry
+    areas: [face]
+    condition: Facial muscle asymmetry
+    all_of: []
+    any_of: [lower_facial_asymmetry, nasolabial_fold_asymmetry, cheek_puff_asymmetry, eye_closure_asymmetry, incomplete_eye_closure]
+    referral_urgency: routine
+    next_tests: [Clinical facial nerve examination]
+    explanation: Unequal facial movement may be a normal variation or an early sign of facial nerve or muscle weakness.
+  - id: hypomimia
+    areas: [face]
+    condition: Reduced facial expressivity (hypomimia)
+    all_of: [reduced_facial_expression]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Neurological examination for Parkinsonism, Mood assessment]
+    explanation: A masked face can accompany Parkinsonism, depression or some medications.
+  - id: pain_expression
+    areas: [face]
+    condition: Facial signs of pain or distress
+    all_of: [pain_expression]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Pain assessment by a clinician]
+    explanation: Repeated brow lowering, eye squeezing and lip raising are associated with pain.
+
+  # Colour signs across areas
+  - id: cyanosis
+    areas: [face, mouth, hands]
+    condition: Low blood oxygen (cyanosis)
+    all_of: []
+    any_of: [central_cyanosis_lips, blue_tongue, nail_bed_cyanosis]
+    referral_urgency: urgent
+    next_tests: [Pulse oximetry, Clinical assessment of breathing and circulation]
+    explanation: Bluish lips, tongue or nail beds can indicate reduced oxygen in the blood.
+  - id: anaemia
+    areas: [face, eyes, hands, mouth]
+    condition: Anaemia
+    all_of: []
+    any_of: [facial_pallor, conjunctival_pallor, palmar_pallor, pale_tongue]
+    referral_urgency: soon
+    next_tests: [Full blood count (haemoglobin), Iron studies]
+    explanation: Pale lips, inner eyelids, palms or tongue are classic visual signs of anaemia.
+
+  # Eyes
+  - id: jaundice
+    areas: [eyes]
+    condition: Jaundice (raised bilirubin)
+    all_of: [scleral_icterus]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Serum bilirubin, Liver function tests]
+    explanation: Yellow whites of the eyes are an early visible sign of raised bilirubin.
+  - id: fatigable_ptosis
+    areas: [eyes]
+    condition: Fatigable eyelid weakness (as seen in myasthenia gravis)
+    all_of: [upgaze_eyelid_fatigue]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Neurological examination, Acetylcholine receptor antibody test]
+    explanation: Eyelid drooping that worsens with sustained upgaze suggests a fatigable neuromuscular problem.
+  - id: ptosis
+    areas: [eyes]
+    condition: Drooping upper eyelid (ptosis)
+    all_of: [ptosis]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Eye examination, Pupil examination]
+    explanation: A low upper eyelid can be age-related, congenital or due to nerve or muscle problems.
+  - id: strabismus
+    areas: [eyes]
+    condition: Eye misalignment (strabismus)
+    all_of: []
+    any_of: [strabismus_horizontal, strabismus_vertical, limited_gaze_range]
+    referral_urgency: routine
+    next_tests: [Cover test by an optometrist or ophthalmologist, Eye movement examination]
+    explanation: Eyes pointing in different directions or limited eye movements may indicate a squint or eye muscle or nerve weakness.
+  - id: nystagmus
+    areas: [eyes]
+    condition: Nystagmus
+    all_of: []
+    any_of: [nystagmus, gaze_evoked_nystagmus]
+    referral_urgency: soon
+    next_tests: [Neurological and vestibular examination, Medication review]
+    explanation: Rhythmic eye oscillation can come from the inner ear, the brainstem or cerebellum, or medications.
+  - id: drowsiness
+    areas: [eyes]
+    condition: Reduced alertness or sleepiness
+    all_of: [drowsiness_signs]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Sleep history, Medication review]
+    explanation: Long blinks and prolonged eye closure are associated with drowsiness.
+  - id: eye_irritation
+    areas: [eyes]
+    condition: Conjunctivitis or eye irritation
+    all_of: []
+    any_of: [scleral_redness, conjunctivitis_appearance, increased_blink_rate]
+    referral_urgency: routine
+    next_tests: [Eye examination if symptoms persist]
+    explanation: Red eyes and frequent blinking often accompany irritation, dryness or infection.
+  - id: lipid_signs
+    areas: [eyes]
+    condition: Visible lipid deposits (possible raised cholesterol)
+    all_of: []
+    any_of: [xanthelasma_appearance, corneal_arcus_appearance]
+    referral_urgency: routine
+    next_tests: [Fasting lipid profile]
+    explanation: Yellow eyelid plaques or a corneal ring can be associated with raised cholesterol, especially in younger adults.
+
+  # Movement
+  - id: parkinsonian_features
+    areas: [movement]
+    condition: Parkinsonian motor features
+    all_of: [finger_tapping_bradykinesia]
+    any_of: [parkinsonian_range_tremor, finger_tapping_asymmetry]
+    referral_urgency: soon
+    next_tests: [Neurological examination for Parkinsonism]
+    explanation: Slowing and fading of repeated movements together with rest tremor or one-sided slowing suggest Parkinsonism.
+  - id: rest_tremor
+    areas: [movement]
+    condition: Rest tremor in the Parkinsonian frequency range
+    all_of: [parkinsonian_range_tremor]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Neurological examination]
+    explanation: A 4-6 Hz tremor at rest is typical of Parkinsonian tremor.
+  - id: bradykinesia
+    areas: [movement]
+    condition: Slowness of movement (bradykinesia)
+    all_of: []
+    any_of: [finger_tapping_bradykinesia, finger_tapping_asymmetry]
+    referral_urgency: routine
+    next_tests: [Neurological examination]
+    explanation: Slow or fading finger taps can be a sign of bradykinesia.
+  - id: essential_tremor
+    areas: [movement]
+    condition: Action tremor (essential-tremor-like)
+    all_of: [essential_range_tremor]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Neurological examination, Thyroid function tests, Medication and caffeine review]
+    explanation: Tremor when holding the arms out or moving, but not at rest, is typical of essential tremor.
+  - id: unclassified_tremor
+    areas: [movement]
+    condition: Tremor
+    all_of: [tremor_unclassified]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical tremor assessment]
+    explanation: A tremor was detected that did not fit a typical pattern.
+  - id: cerebellar_signs
+    areas: [movement]
+    condition: Cerebellar coordination problem
+    all_of: []
+    any_of: [dysmetria, intention_tremor, dysdiadochokinesia, coordination_asymmetry]
+    referral_urgency: soon
+    next_tests: [Neurological examination of coordination, Gait assessment]
+    explanation: Inaccurate pointing, tremor near a target and clumsy rapid alternating movements suggest a cerebellar problem.
+  - id: stroke_arm_drift
+    areas: [movement]
+    condition: One-sided arm weakness (as seen in stroke)
+    all_of: [arm_drift]
+    any_of: []
+    referral_urgency: emergency
+    next_tests: [Immediate in-person neurological assessment]
+    explanation: One arm drifting downward with the eyes closed is a sign of weakness on that side.
+  - id: pronator_drift
+    areas: [movement]
+    condition: Subtle one-sided arm weakness
+    all_of: [forearm_pronation_drift]
+    any_of: []
+    referral_urgency: urgent
+    next_tests: [Neurological examination]
+    explanation: The forearm turning palm-down with the eyes closed is a subtle sign of upper motor neurone weakness.
+  - id: chorea
+    areas: [movement]
+    condition: Chorea-like involuntary movements
+    all_of: [chorea_like_movements]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Neurological examination, Medication review]
+    explanation: Irregular, flowing involuntary movements can be caused by neurological conditions or medications.
+  - id: tics
+    areas: [movement]
+    condition: Tic-like movements
+    all_of: [tic_like_movements]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical assessment if the movements are troublesome]
+    explanation: Brief repeated stereotyped movements are typical of tics.
+  - id: dystonia
+    areas: [movement]
+    condition: Dystonic posture
+    all_of: [sustained_abnormal_posture]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Neurological examination]
+    explanation: Holding the head or shoulder in a sustained abnormal position can occur with dystonia.
+  - id: seizure
+    areas: [movement]
+    condition: Seizure-like movement
+    all_of: [seizure_like_movement]
+    any_of: []
+    referral_urgency: emergency
+    next_tests: [Emergency assessment, EEG as decided by clinicians]
+    explanation: Rhythmic jerking of several limbs outside voluntary tasks may represent a seizure.
+
+  # Hands
+  - id: clubbing
+    areas: [hands]
+    condition: Finger clubbing
+    all_of: []
+    any_of: [finger_clubbing]
+    referral_urgency: soon
+    next_tests: [Clinical examination of the chest and heart, Chest X-ray as decided by clinicians]
+    explanation: Clubbing can be associated with chronic lung, heart, liver or bowel conditions.
+  - id: reduced_perfusion
+    areas: [hands]
+    condition: Reduced peripheral circulation or dehydration
+    all_of: [prolonged_capillary_refill]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Repeat capillary refill test in a warm room, Blood pressure and hydration assessment]
+    explanation: Slow return of nail colour after pressure can indicate poor circulation, dehydration or simply cold hands.
+  - id: inflammatory_arthritis
+    areas: [hands]
+    condition: Inflammatory arthritis of the hands
+    all_of: []
+    any_of: [ulnar_deviation, finger_joint_swelling, finger_alignment_asymmetry]
+    referral_urgency: routine
+    next_tests: [Joint examination, Rheumatoid factor and anti-CCP antibodies, Hand X-ray]
+    explanation: Swollen finger joints and fingers drifting toward the little finger are typical of rheumatoid arthritis.
+
+  # Posture and walking
+  - id: fall_risk
+    areas: [posture]
+    condition: Increased fall risk
+    all_of: []
+    any_of: [slow_timed_up_and_go, reduced_single_leg_stance, slow_sit_to_stand, romberg_sign, increased_postural_sway, difficulty_rising]
+    referral_urgency: soon
+    next_tests: [Falls risk assessment, Vision, medication and blood pressure review]
+    explanation: Slow functional tests and poor balance are associated with a higher risk of falls.
+  - id: sensory_ataxia
+    areas: [posture]
+    condition: Balance problem dependent on vision (positive Romberg pattern)
+    all_of: [romberg_sign]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Neurological examination of position sense, Vitamin B12 level]
+    explanation: Much worse balance with eyes closed suggests a problem with position sense or the inner ear.
+  - id: parkinsonian_gait
+    areas: [posture]
+    condition: Parkinsonian gait features
+    all_of: []
+    any_of: [shuffling_gait, reduced_arm_swing]
+    referral_urgency: routine
+    next_tests: [Neurological gait examination]
+    explanation: Short shuffling steps and reduced arm swing are seen in Parkinsonism.
+  - id: hip_abductor_weakness
+    areas: [posture]
+    condition: Hip abductor weakness (Trendelenburg pattern)
+    all_of: [trendelenburg_pattern]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Hip examination, Physiotherapy assessment]
+    explanation: The opposite hip dropping when standing on one leg suggests weak hip abductor muscles.
+  - id: limp
+    areas: [posture]
+    condition: Antalgic or asymmetric gait (limp)
+    all_of: []
+    any_of: [gait_asymmetry_limp, slow_cadence]
+    referral_urgency: routine
+    next_tests: [Musculoskeletal examination of the hips, knees and feet]
+    explanation: Unequal step timing is typical of a limp caused by pain or weakness.
+  - id: spinal_or_pelvic_asymmetry
+    areas: [posture]
+    condition: Postural asymmetry (scoliosis or leg length difference)
+    all_of: []
+    any_of: [shoulder_height_asymmetry, pelvic_obliquity, trunk_lateral_lean]
+    referral_urgency: routine
+    next_tests: [Forward bend test, Spine examination, Leg length measurement]
+    explanation: Uneven shoulders or hips and leaning to one side can reflect scoliosis or a leg length difference.
+  - id: kyphotic_posture
+    areas: [posture]
+    condition: Forward head or stooped posture
+    all_of: []
+    any_of: [forward_head_posture, stooped_posture]
+    referral_urgency: routine
+    next_tests: [Physiotherapy posture assessment]
+    explanation: Forward head posture and stooping are often postural but can relate to spinal conditions.
+  - id: knee_alignment
+    areas: [posture]
+    condition: Knee alignment variation
+    all_of: []
+    any_of: [knee_valgus, knee_varus]
+    referral_urgency: routine
+    next_tests: [Knee examination]
+    explanation: Knock-knee or bow-leg alignment can be normal or relate to joint disease.
+  - id: shoulder_restriction
+    areas: [posture]
+    condition: Shoulder movement restriction
+    all_of: []
+    any_of: [limited_shoulder_flexion, limited_shoulder_abduction, shoulder_flexion_asymmetry, shoulder_abduction_asymmetry, limited_elbow_extension]
+    referral_urgency: routine
+    next_tests: [Shoulder examination]
+    explanation: Reduced arm elevation can be due to frozen shoulder, rotator cuff problems or arthritis.
+  - id: lower_limb_restriction
+    areas: [posture]
+    condition: Hip or knee movement restriction
+    all_of: []
+    any_of: [limited_knee_flexion, limited_hip_flexion, knee_flexion_asymmetry, hip_flexion_asymmetry]
+    referral_urgency: routine
+    next_tests: [Hip and knee examination]
+    explanation: Reduced bending can be caused by arthritis, pain or muscle tightness.
+
+  # Mouth
+  - id: hypoglossal_weakness
+    areas: [mouth]
+    condition: Tongue weakness (hypoglossal nerve)
+    all_of: [tongue_deviation]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Cranial nerve examination]
+    explanation: A tongue that deviates when protruded points toward the weaker side.
+  - id: oral_thrush
+    areas: [mouth]
+    condition: Oral thrush (candidiasis)
+    all_of: []
+    any_of: [oral_white_patches, oral_thrush_appearance]
+    referral_urgency: routine
+    next_tests: [Clinical oral examination]
+    explanation: White patches inside the mouth are commonly caused by thrush.
+  - id: gingivitis
+    areas: [mouth]
+    condition: Gum inflammation (gingivitis)
+    all_of: []
+    any_of: [gum_redness, gingival_inflammation_appearance]
+    referral_urgency: routine
+    next_tests: [Dental examination]
+    explanation: Red, swollen gums are a sign of gingivitis.
+  - id: angular_cheilitis
+    areas: [mouth]
+    condition: Angular cheilitis
+    all_of: [angular_cheilitis_appearance]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical examination, Iron and vitamin B levels if recurrent]
+    explanation: Cracks at the mouth corners can relate to infection or nutritional deficiency.
+  - id: jaw_or_tongue_asymmetry
+    areas: [mouth]
+    condition: Jaw or tongue movement asymmetry
+    all_of: []
+    any_of: [mouth_opening_asymmetry, tongue_reach_asymmetry]
+    referral_urgency: routine
+    next_tests: [Jaw joint and cranial nerve examination]
+    explanation: Uneven opening or tongue movement can relate to the jaw joint or nerve weakness.
+
+  # Skin
+  - id: mpox_pattern
+    areas: [skin]
+    condition: Rash resembling mpox
+    all_of: [skin_pattern_mpox]
+    any_of: []
+    referral_urgency: urgent
+    next_tests: [Clinical skin assessment, Lesion swab testing as decided by clinicians]
+    explanation: Firm, deep-seated, well-defined lesions can resemble mpox.
+  - id: measles_pattern
+    areas: [skin]
+    condition: Rash resembling measles
+    all_of: [skin_pattern_measles]
+    any_of: []
+    referral_urgency: urgent
+    next_tests: [Clinical assessment, Measles testing as decided by clinicians]
+    explanation: A widespread red blotchy rash can resemble measles, which is highly contagious.
+  - id: chickenpox_pattern
+    areas: [skin]
+    condition: Rash resembling chickenpox
+    all_of: [skin_pattern_chickenpox]
+    any_of: []
+    referral_urgency: soon
+    next_tests: [Clinical skin assessment]
+    explanation: Itchy blisters at different stages can resemble chickenpox.
+  - id: fungal_pattern
+    areas: [skin]
+    condition: Patch resembling ringworm (fungal infection)
+    all_of: [skin_pattern_ringworm]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical skin assessment, Skin scraping if needed]
+    explanation: A ring-shaped scaly patch with a clearer centre can resemble ringworm.
+  - id: eczema_pattern
+    areas: [skin]
+    condition: Patch resembling eczema
+    all_of: [skin_pattern_eczema]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical skin assessment]
+    explanation: Dry, red, rough patches can resemble eczema.
+  - id: acne_pattern
+    areas: [skin]
+    condition: Spots resembling acne
+    all_of: [skin_pattern_acne]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Pharmacist or clinician review if troublesome]
+    explanation: Comedones and inflamed spots on the face can resemble acne.
+  - id: vitiligo_pattern
+    areas: [skin]
+    condition: Depigmented patches (vitiligo pattern)
+    all_of: [vitiligo_pattern_depigmentation]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical skin assessment, Wood's lamp examination]
+    explanation: Well-defined patches of lost pigment are typical of vitiligo.
+  - id: hyperpigmentation
+    areas: [skin]
+    condition: Hyperpigmented patches
+    all_of: [hyperpigmented_patches]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical skin assessment]
+    explanation: Darker patches can be due to sun exposure, previous inflammation or hormonal changes.
+  - id: unclassified_skin_findings
+    areas: [skin]
+    condition: Unclassified skin spots or patches
+    all_of: [skin_findings_present]
+    any_of: []
+    referral_urgency: routine
+    next_tests: [Clinical skin assessment if the spots are new, changing or symptomatic]
+    explanation: Visible skin spots were found but did not confidently match a listed pattern.

@@ -1,0 +1,280 @@
+# Movement disorder examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: movement
+version: "1.0"
+title:
+  en: Movement examination
+description:
+  en: >-
+    A guided educational screening for tremor, slowness of movement, coordination, arm drift and
+    involuntary movements. It takes about five minutes while seated.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Sit on a chair facing the camera so your upper body and both hands are fully visible. Make sure the
+        camera is steady. Press "Ready" when you are set.
+    tips:
+      en:
+        - Place the camera about one and a half metres away at chest height.
+        - Choose a chair without armrests if you can.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Upper body and both hands detected.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Move back until your head, shoulders, elbows and hands are all in the picture.
+
+  - id: hands_at_rest
+    step_number: 2
+    title:
+      en: Hands at rest
+    instruction:
+      en: >-
+        Rest your hands on your thighs and relax completely. Count backwards from 20 out loud, slowly,
+        for 20 seconds. Counting helps reveal a resting tremor.
+    tips:
+      en:
+        - Let your hands lie loosely, palms down or sideways.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 20
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 80
+      description: Twenty seconds of hands resting in view.
+    active_agents: [tremor, involuntary_movement]
+    repeat_guidance:
+      en:
+        - Keep both hands resting on your thighs where the camera can see them.
+
+  - id: arms_out
+    step_number: 3
+    title:
+      en: Arms out
+    instruction:
+      en: Stretch both arms straight out in front of you, palms down, fingers spread, and hold for 15 seconds.
+    tips:
+      en:
+        - Keep your arms at shoulder height.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 15
+    max_duration_seconds: 25
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 60
+      description: Fifteen seconds of arms held out.
+    active_agents: [tremor, involuntary_movement]
+    repeat_guidance:
+      en:
+        - Hold your arms straight out and keep your hands inside the picture.
+
+  - id: arm_drift
+    step_number: 4
+    title:
+      en: Arm drift
+    instruction:
+      en: >-
+        Keep your arms stretched out but turn your palms up. Then close your eyes and hold this position
+        for 20 seconds.
+    tips:
+      en:
+        - Try to keep both arms at the same height without looking.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 20
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 80
+      description: Twenty seconds of arms held palms up with eyes closed.
+    active_agents: [arm_drift, involuntary_movement]
+    prompts:
+      - at_seconds: 0
+        text:
+          en: Palms up, eyes closed, hold still.
+    repeat_guidance:
+      en:
+        - Keep both arms out, palms up, and both hands inside the picture.
+
+  - id: finger_tapping_right
+    step_number: 5
+    title:
+      en: Finger tapping, right
+    instruction:
+      en: Tap your right thumb and index finger together as fast and as wide as you can for 10 seconds.
+    tips:
+      en:
+        - Open your fingers wide between taps.
+        - Hold your right hand up so the camera can see it clearly.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: events
+      event: taps
+      min_events: 10
+      min_valid_frames: 40
+      description: At least ten taps detected over ten seconds.
+    active_agents: [finger_tapping, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Hold your right hand up toward the camera and make big, fast taps.
+
+  - id: finger_tapping_left
+    step_number: 6
+    title:
+      en: Finger tapping, left
+    instruction:
+      en: Now tap your left thumb and index finger together as fast and as wide as you can for 10 seconds.
+    tips:
+      en:
+        - Open your fingers wide between taps.
+        - Hold your left hand up so the camera can see it clearly.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: events
+      event: taps
+      min_events: 10
+      min_valid_frames: 40
+      description: At least ten taps detected over ten seconds.
+    active_agents: [finger_tapping, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Hold your left hand up toward the camera and make big, fast taps.
+
+  - id: hand_flipping_right
+    step_number: 7
+    title:
+      en: Hand flipping, right
+    instruction:
+      en: Rest your right hand on your thigh and flip it palm up, palm down, as fast as you can for 10 seconds.
+    tips:
+      en:
+        - Make each flip complete.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of right hand flipping.
+    active_agents: [coordination, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Keep your right hand in view on your thigh while flipping it.
+
+  - id: hand_flipping_left
+    step_number: 8
+    title:
+      en: Hand flipping, left
+    instruction:
+      en: Now rest your left hand on your thigh and flip it palm up, palm down, as fast as you can for 10 seconds.
+    tips:
+      en:
+        - Make each flip complete.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of left hand flipping.
+    active_agents: [coordination, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Keep your left hand in view on your thigh while flipping it.
+
+  - id: finger_to_nose_right
+    step_number: 9
+    title:
+      en: Finger to nose, right
+    instruction:
+      en: >-
+        Touch your nose with your right index finger, then stretch your arm out to point at the camera,
+        and repeat at a steady pace for 15 seconds.
+    tips:
+      en:
+        - Touch the tip of your nose each time.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 15
+    max_duration_seconds: 25
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 60
+      description: Fifteen seconds of right finger-to-nose movements.
+    active_agents: [coordination, tremor, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Keep your face and right hand in view and touch your nose each time.
+
+  - id: finger_to_nose_left
+    step_number: 10
+    title:
+      en: Finger to nose, left
+    instruction:
+      en: >-
+        Now touch your nose with your left index finger, then stretch your arm out to point at the camera,
+        and repeat at a steady pace for 15 seconds.
+    tips:
+      en:
+        - Touch the tip of your nose each time.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 15
+    max_duration_seconds: 25
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 60
+      description: Fifteen seconds of left finger-to-nose movements.
+    active_agents: [coordination, tremor, involuntary_movement]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Keep your face and left hand in view and touch your nose each time.
+
+  - id: quiet_sitting
+    step_number: 11
+    title:
+      en: Quiet sitting
+    instruction:
+      en: Sit still with your hands on your lap and relax for 30 seconds. You do not need to do anything.
+    tips:
+      en:
+        - Breathe normally and let your body rest.
+    camera_setup: upper_body_seated
+    get_ready_seconds: 3
+    min_duration_seconds: 30
+    max_duration_seconds: 40
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 120
+      description: Thirty seconds of quiet sitting.
+    active_agents: [involuntary_movement]
+    repeat_guidance:
+      en:
+        - Stay seated in the same place so your whole upper body is visible.

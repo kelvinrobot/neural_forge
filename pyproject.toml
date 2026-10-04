@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neural-forge"
+version = "1.0.0"
+description = "Educational real-time webcam visual screening backend built as a team of agents."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "Proprietary - educational use" }
+dependencies = [
+    "fastapi>=0.115,<1.0",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7,<3.0",
+    "pydantic-settings>=2.3",
+    "httpx>=0.27",
+    "PyYAML>=6.0",
+    "numpy>=1.26,<2.3",
+    "scipy>=1.12",
+    "opencv-python-headless>=4.9",
+    "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+models = [
+    "mediapipe>=0.10.14",
+    "rtmlib>=0.0.13",
+    "onnxruntime-gpu>=1.19",
+    "ultralytics>=8.3.150",
+    "transformers>=4.53",
+    "sentencepiece>=0.2",
+    "huggingface_hub>=0.24",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+]
+
+[tool.setuptools.packages.find]
+include = ["neural_forge*"]
+
+[tool.setuptools.package-data]
+neural_forge = ["prompts/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q"
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true

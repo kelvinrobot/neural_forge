@@ -1,0 +1,218 @@
+# Mouth examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: mouth
+version: "1.0"
+title:
+  en: Mouth examination
+description:
+  en: >-
+    A guided educational screening of mouth opening, tongue movement, the colour of the tongue and
+    gums, and the corners of the lips. It takes about two minutes.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Bring the camera close to your face so your mouth is clearly visible, with a bright light in front
+        of you. Press "Ready" when you are set.
+    tips:
+      en:
+        - Your mouth should be in the middle of the screen.
+        - A lamp or window in front of you works best.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Mouth clearly visible with good image quality.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Move the camera a little closer and turn toward the light.
+
+  - id: colour_reference
+    step_number: 2
+    title:
+      en: Colour reference
+    instruction:
+      en: >-
+        Hold a plain white or grey card (a sheet of white paper works) flat next to your mouth for
+        5 seconds. You can skip this step if you do not have one.
+    tips:
+      en:
+        - Keep the whole card in view and avoid glare.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Reference card detected in enough frames.
+    active_agents: []
+    captures_colour_reference: true
+    skippable: true
+    repeat_guidance:
+      en:
+        - Hold the card flat and still next to your mouth, fully inside the picture.
+
+  - id: open_wide
+    step_number: 3
+    title:
+      en: Open wide
+    instruction:
+      en: Open your mouth as wide as you comfortably can and hold it for 5 seconds.
+    tips:
+      en:
+        - Keep your head straight and facing the camera.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of wide mouth opening.
+    active_agents: [mouth_movement]
+    repeat_guidance:
+      en:
+        - Open your mouth wide and keep your head straight.
+
+  - id: tongue_out
+    step_number: 4
+    title:
+      en: Tongue out
+    instruction:
+      en: Stick your tongue straight out as far as you can and hold it for 5 seconds.
+    tips:
+      en:
+        - Point your tongue straight toward the camera, not to either side.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of tongue protrusion.
+    active_agents: [mouth_movement, oral_appearance]
+    repeat_guidance:
+      en:
+        - Stick your tongue out further and keep it still.
+
+  - id: tongue_left
+    step_number: 5
+    title:
+      en: Tongue left
+    instruction:
+      en: Move your tongue to the left corner of your mouth and hold for 3 seconds.
+    tips:
+      en:
+        - Push your tongue as far into the left corner as you can.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 3
+    max_duration_seconds: 10
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 12
+      description: Three seconds of tongue in the left corner.
+    active_agents: [mouth_movement]
+    repeat_guidance:
+      en:
+        - Open your lips slightly so the tongue can be seen in the corner.
+
+  - id: tongue_right
+    step_number: 6
+    title:
+      en: Tongue right
+    instruction:
+      en: Move your tongue to the right corner of your mouth and hold for 3 seconds.
+    tips:
+      en:
+        - Push your tongue as far into the right corner as you can.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 3
+    max_duration_seconds: 10
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 12
+      description: Three seconds of tongue in the right corner.
+    active_agents: [mouth_movement]
+    repeat_guidance:
+      en:
+        - Open your lips slightly so the tongue can be seen in the corner.
+
+  - id: inside_mouth
+    step_number: 7
+    title:
+      en: Inside of mouth
+    instruction:
+      en: Open wide, tilt your head back slightly and say "aaah" for 6 seconds.
+    tips:
+      en:
+        - Keep the light shining into your mouth.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 6
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Six seconds of the open mouth interior.
+    active_agents: [oral_appearance]
+    repeat_guidance:
+      en:
+        - Open wider and turn toward the light so the inside of your mouth is lit.
+
+  - id: show_gums
+    step_number: 8
+    title:
+      en: Show your gums
+    instruction:
+      en: >-
+        Bite your teeth together and use your fingers to pull your lips back so your gums show.
+        Hold for 6 seconds.
+    tips:
+      en:
+        - Use clean fingers and pull gently.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 6
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Six seconds with gums visible.
+    active_agents: [oral_appearance]
+    repeat_guidance:
+      en:
+        - Pull your lips back a little more so the gums above and below the teeth show.
+
+  - id: mouth_corners
+    step_number: 9
+    title:
+      en: Mouth corners
+    instruction:
+      en: Close your mouth and relax your lips, facing the camera, for 4 seconds.
+    tips:
+      en:
+        - Keep the camera close and steady.
+    camera_setup: mouth_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 4
+    max_duration_seconds: 10
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Four seconds of relaxed lips.
+    active_agents: [oral_appearance]
+    repeat_guidance:
+      en:
+        - Keep both corners of your mouth inside the picture.

@@ -1,0 +1,57 @@
+# Educational reference ranges included in the reasoning system prompt.
+# EDUCATIONAL DEFAULTS ONLY: approximate textbook values for teaching, not validated clinical norms.
+
+areas:
+  eyes:
+    - {metric: mrd1, typical: "3.5 to 5.5", unit: mm, note: "Below about 2 mm suggests ptosis."}
+    - {metric: mrd1_asymmetry, typical: "below 1.0", unit: mm, note: "Asymmetry above 1.5 mm is notable."}
+    - {metric: upgaze_lid_droop, typical: "below 1.0", unit: mm, note: "Progressive droop suggests fatigable weakness."}
+    - {metric: horizontal_deviation, typical: "-1.0 to 1.0", unit: mm, note: "Iris-based estimate; positive is convergent."}
+    - {metric: blink_rate, typical: "8 to 30", unit: blinks/min, note: "Reduced in Parkinsonism, increased with irritation."}
+    - {metric: perclos, typical: "below 0.15", unit: fraction, note: "Higher values suggest drowsiness."}
+    - {metric: oscillation_amplitude, typical: "below 0.5", unit: degrees, note: "Regular oscillation above this suggests nystagmus."}
+    - {metric: sclera_b_star, typical: "below 14", unit: CIELAB b*, note: "Higher yellowness may indicate jaundice."}
+    - {metric: conjunctiva_a_star, typical: "above 16", unit: CIELAB a*, note: "Lower redness suggests pallor."}
+  face:
+    - {metric: smile_asymmetry_ratio, typical: "below 0.3", unit: ratio, note: "Higher values indicate one-sided weakness."}
+    - {metric: brow_raise_asymmetry_ratio, typical: "below 0.4", unit: ratio, note: "Forehead involvement separates peripheral from central weakness."}
+    - {metric: resting_mouth_corner_difference, typical: "-0.035 to 0.035", unit: IOD, note: "Positive means the right corner is lower."}
+    - {metric: expression_range, typical: "above 0.3", unit: score, note: "Lower values suggest hypomimia."}
+    - {metric: pspi_median, typical: "below 3", unit: score (0-16), note: "Approximate pain expression score."}
+    - {metric: lip_minus_skin_a_star, typical: "above 5", unit: CIELAB a*, note: "Low values suggest pallor; low with negative b* suggests cyanosis."}
+  mouth:
+    - {metric: tongue_tip_deviation, typical: "-0.08 to 0.08", unit: IOD, note: "Deviation points toward a weak side."}
+    - {metric: mouth_opening_asymmetry, typical: "below 0.2", unit: ratio, note: "Uneven opening."}
+    - {metric: tongue_a_star, typical: "above 14", unit: CIELAB a*, note: "Lower values suggest a pale tongue."}
+    - {metric: white_patch_fraction, typical: "below 0.12", unit: fraction, note: "Higher values suggest white plaques."}
+  hands:
+    - {metric: palm_a_star, typical: "above 10", unit: CIELAB a*, note: "Lower values with palm close to forearm colour suggest pallor."}
+    - {metric: nail_minus_skin_b_star, typical: "above -6", unit: CIELAB b*, note: "More negative values suggest bluish nail beds."}
+    - {metric: capillary_refill_time, typical: "below 2", unit: s, note: "Slower refill suggests reduced perfusion or cold hands."}
+    - {metric: distal_interphalangeal_depth_ratio, typical: "below 1.0", unit: ratio, note: "Above 1 is a sign of clubbing."}
+    - {metric: mean_ulnar_deviation, typical: "below 12", unit: degrees, note: "Higher values suggest ulnar drift."}
+    - {metric: joint_width_ratio, typical: "below 1.25", unit: ratio, note: "Higher values suggest joint swelling."}
+  movement:
+    - {metric: tremor_frequency, typical: "Parkinsonian 3.5-6.5 Hz at rest; essential 4-12 Hz with action", unit: Hz, note: "Physiological tremor is small and 8-12 Hz."}
+    - {metric: tremor_amplitude, typical: "below 0.15", unit: cm, note: "Peak-to-peak fingertip oscillation."}
+    - {metric: tap_rate, typical: "above 2", unit: Hz, note: "Slower tapping suggests bradykinesia."}
+    - {metric: amplitude_decrement, typical: "below 0.3", unit: fraction, note: "Progressive fading suggests bradykinesia."}
+    - {metric: endpoint_error, typical: "below 3", unit: cm, note: "Larger errors suggest dysmetria."}
+    - {metric: flip_rate, typical: "above 1", unit: Hz, note: "Slow or irregular flipping suggests dysdiadochokinesia."}
+    - {metric: wrist_drift, typical: "below 4.7", unit: cm, note: "One-sided drift suggests weakness."}
+    - {metric: quiet_movement_energy, typical: "below 0.12", unit: shoulder widths/s, note: "Higher irregular energy suggests chorea."}
+  posture:
+    - {metric: shoulder_level_difference, typical: "-3.5 to 3.5", unit: degrees, note: "Positive means the left shoulder is lower."}
+    - {metric: craniovertebral_angle, typical: "above 48", unit: degrees, note: "Lower angles indicate forward head posture."}
+    - {metric: max_shoulder_flexion, typical: "above 150", unit: degrees, note: "Measured in the camera plane."}
+    - {metric: max_knee_flexion, typical: "above 60 in a comfortable squat", unit: degrees, note: "Measured in the camera plane."}
+    - {metric: cadence, typical: "90 to 120", unit: steps/min, note: "Self-selected walking pace."}
+    - {metric: step_time_asymmetry, typical: "below 0.15", unit: fraction, note: "Higher values indicate a limp."}
+    - {metric: romberg_ratio, typical: "below 2", unit: ratio, note: "Higher values suggest vision-dependent balance."}
+    - {metric: single_leg_stance_time, typical: "above 5 (adults)", unit: s, note: "Shorter times are linked to fall risk."}
+    - {metric: timed_up_and_go, typical: "below 12", unit: s, note: "Longer times are linked to fall risk."}
+    - {metric: five_times_sit_to_stand, typical: "below 15", unit: s, note: "Longer times suggest reduced leg strength."}
+  skin:
+    - {metric: lesion_label_probability, typical: "zero-shot probability", unit: probability, note: "Image similarity only; never a diagnosis."}
+    - {metric: depigmented_fraction, typical: "below 0.02", unit: fraction, note: "Consistent, well-defined pale patches suggest vitiligo."}
+    - {metric: hyperpigmented_fraction, typical: "below 0.04", unit: fraction, note: "Darker patches relative to surrounding skin."}

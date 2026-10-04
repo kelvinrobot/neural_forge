@@ -1,0 +1,73 @@
+# Patient-facing messages shared by all examinations. Add other languages alongside "en".
+
+encouragements:
+  en:
+    - Well done, that step is complete.
+    - Great, thank you. On to the next step.
+    - Nicely done. Let's continue.
+    - Thank you, that worked well.
+    - Perfect. Here is the next step.
+
+messages:
+  step_complete_default:
+    en: Well done, that step is complete.
+  step_skipped:
+    en: That step was skipped. Let's move on.
+  step_incomplete:
+    en: We could not get enough clear information for that step, but that is okay. Let's move on.
+  step_not_skippable:
+    en: This step cannot be skipped. You can pause or stop the examination instead.
+  quality_ok:
+    en: The camera view looks good. Get ready.
+  no_frames:
+    en: We are not receiving pictures from your camera. Check that the camera is on and connected.
+  repeat_reason_default:
+    en: We did not get enough clear information.
+  reason_quality_timeout:
+    en: The camera view did not become clear enough in time.
+  reason_skipped_by_patient:
+    en: Skipped by the patient.
+  reason_stopped_by_patient:
+    en: The examination was stopped by the patient during this step.
+  reason_not_reached:
+    en: The examination ended before this step.
+  progress_frames_missing:
+    en: Only {captured} of {required} clear camera frames were captured.
+  reference_card_missing:
+    en: The white or grey card was not detected clearly.
+  examination_complete:
+    en: The examination is complete. Thank you for taking part.
+  examination_stopped:
+    en: The examination was stopped. We will prepare a report from the steps you completed.
+  analysis_started:
+    en: We are now analysing your results. This can take up to a minute.
+  rule_summary_flags:
+    en: "The screening measurements raised {count} educational flag(s): {flags}."
+  rule_summary_none:
+    en: No educational screening thresholds were crossed in the collected data.
+  report_intro:
+    en: "{area}: {completed} of {total} steps were completed ({skipped} skipped)."
+  report_flags_intro:
+    en: "Screening flags: {flags}."
+  report_no_flags:
+    en: No screening flags were raised.
+  report_referral_none:
+    en: No specific follow-up is suggested by this screening, but see a health professional if you have concerns.
+  report_referral_routine:
+    en: Consider mentioning these findings to a health professional at a routine appointment.
+  report_referral_soon:
+    en: It is recommended that you see a health professional soon, within the next few days, to discuss these findings.
+  report_referral_urgent:
+    en: Please seek a medical assessment urgently, today if possible.
+  report_referral_emergency:
+    en: Some signs may need emergency care. If you have new weakness, trouble speaking, breathing difficulty, blue lips or ongoing jerking, call emergency services now.
+  report_quality_frames:
+    en: "{usable} of {processed} processed camera frames were usable ({percent}%)."
+  report_quality_fps:
+    en: "The camera delivered about {fps} frames per second; {dropped} frames were dropped to keep up in real time."
+  report_quality_calibration:
+    en: "Colour calibration: {method}, confidence {percent}%."
+  report_quality_issues:
+    en: "Most common camera issues: {issues}."
+  report_step_not_completed:
+    en: "Step '{title}' was not completed: {reason}"

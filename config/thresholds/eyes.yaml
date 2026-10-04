@@ -1,0 +1,94 @@
+# Eye area thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+eyelid:
+  baseline_steps: [look_straight]
+  fatigue_steps: [sustained_upgaze]
+  iris_diameter_mm: 11.7
+  blink_ear_threshold: 0.18
+  ptosis_mrd1_mm: 2.0
+  ptosis_asymmetry_mm: 1.5
+  fatigue_window_seconds: 5.0
+  fatigue_droop_mm: 1.5
+  min_window_samples: 10
+
+eye_alignment:
+  iris_diameter_mm: 11.7
+  max_head_yaw_degrees: 15.0
+  blink_ear_threshold: 0.18
+  horizontal_deviation_mm: 1.0
+  vertical_deviation_mm: 0.8
+  consistency_fraction: 0.6
+
+eye_movement:
+  primary_steps: [look_straight]
+  gaze_steps:
+    look_left: left
+    look_right: right
+    look_up: up
+    look_down: down
+  iris_diameter_mm: 11.7
+  eyeball_radius_mm: 12.0
+  blink_ear_threshold: 0.18
+  band_low_hz: 1.0
+  band_high_hz: 8.0
+  min_sampling_rate_hz: 10.0
+  min_duration_seconds: 2.0
+  min_regularity: 0.35
+  min_amplitude_degrees: 0.5
+  min_gaze_excursion_fraction: 0.10
+
+blink_alertness:
+  analysis_steps: [look_straight]
+  open_reference_percentile: 90
+  close_ratio: 0.55
+  reopen_ratio: 0.75
+  min_blink_seconds: 0.05
+  max_blink_seconds: 1.0
+  perclos_closure_fraction: 0.8
+  perclos_drowsy: 0.15
+  long_blink_seconds: 0.4
+  blink_rate_low_per_minute: 8
+  blink_rate_high_per_minute: 30
+  min_duration_seconds: 10.0
+
+eye_appearance:
+  sclera_steps: [eyes_close_up]
+  conjunctiva_steps: [lower_eyelid]
+  min_sclera_pixels: 150
+  min_conjunctiva_pixels: 120
+  sclera_min_lightness: 40.0
+  conjunctiva_band_fraction: 0.35
+  skin_exclusion_delta_e: 8.0
+  jaundice_sclera_b_min: 14.0
+  jaundice_sclera_to_skin_b_ratio_min: 0.75
+  sclera_redness_a_min: 10.0
+  conjunctiva_pallor_a_max: 16.0
+  conjunctiva_pallor_skin_delta_a_max: 4.0
+  min_calibration_confidence: 0.3
+  crops_to_keep: 3
+  crop_padding_fraction: 0.35
+  zero_shot_task: eye_appearance
+  normal_label: normal_eye
+  zero_shot_flag_probability: 0.55
+  consultation_probability_low: 0.35
+  consultation_probability_high: 0.65
+  consultation_question: >-
+    This is a close-up photograph of both eyes taken with a webcam for an educational screening.
+    Describe the sclera, conjunctiva, eyelids and the rim of the cornea, and say whether redness,
+    yellowish eyelid plaques or a grey-white corneal ring are visible.
+  label_flags:
+    conjunctivitis:
+      code: conjunctivitis_appearance
+      title: Red, inflamed eye appearance
+      severity: moderate
+    xanthelasma:
+      code: xanthelasma_appearance
+      title: Yellowish eyelid plaques
+      severity: low
+    corneal_arcus:
+      code: corneal_arcus_appearance
+      title: Grey-white ring around the cornea
+      severity: low

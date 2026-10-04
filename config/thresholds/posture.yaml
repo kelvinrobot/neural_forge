@@ -1,0 +1,80 @@
+# Posture, joint and walking thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+static_posture:
+  front_steps: [stand_front]
+  side_steps: [stand_side]
+  back_steps: [stand_back]
+  min_keypoint_score: 0.3
+  shoulder_tilt_degrees: 3.5
+  hip_tilt_degrees: 3.0
+  trunk_lean_degrees: 5.0
+  craniovertebral_angle_min_degrees: 48.0
+  trunk_flexion_degrees: 12.0
+  knee_frontal_deviation_degrees: 10.0
+
+range_of_motion:
+  shoulder_flexion_steps: [arms_forward_up]
+  shoulder_abduction_steps: [arms_sideways_up]
+  knee_steps: [knee_bends]
+  min_keypoint_score: 0.3
+  max_percentile: 95
+  shoulder_rep_high_degrees: 120.0
+  shoulder_rep_low_degrees: 50.0
+  knee_rep_high_flexion_degrees: 40.0
+  knee_rep_low_flexion_degrees: 15.0
+  shoulder_flexion_min_degrees: 150.0
+  shoulder_abduction_min_degrees: 150.0
+  knee_flexion_min_degrees: 60.0
+  hip_flexion_min_degrees: 45.0
+  elbow_extension_min_degrees: 160.0
+  asymmetry_degrees: 15.0
+
+gait:
+  walking_steps: [walking]
+  single_leg_steps:
+    single_leg_right: right
+    single_leg_left: left
+  min_keypoint_score: 0.3
+  step_prominence_leg_fraction: 0.15
+  min_step_interval_seconds: 0.25
+  min_steps_for_analysis: 6
+  stance_lift_leg_fraction: 0.05
+  cadence_low_steps_per_minute: 70.0
+  step_time_asymmetry_flag: 0.15
+  shuffle_step_length_leg_fraction: 0.35
+  arm_swing_asymmetry_flag: 0.40
+  reduced_arm_swing_leg_fraction: 0.08
+  pelvic_drop_degrees_flag: 5.0
+
+balance:
+  eyes_open_steps: [balance_eyes_open]
+  eyes_closed_steps: [balance_eyes_closed]
+  single_leg_steps:
+    single_leg_right: right
+    single_leg_left: left
+  min_keypoint_score: 0.3
+  min_duration_seconds: 5.0
+  lowpass_hz: 4.0
+  sway_velocity_flag: 0.03
+  romberg_ratio_flag: 2.0
+  min_closed_sway_velocity_for_romberg: 0.01
+  foot_lift_body_fraction: 0.025
+  single_leg_min_seconds: 5.0
+
+functional_test:
+  tug_steps: [timed_up_and_go]
+  sts_steps: [sit_to_stand]
+  min_keypoint_score: 0.3
+  seated_knee_angle_max: 125.0
+  standing_knee_angle_min: 155.0
+  seated_confirm_seconds: 0.5
+  standing_confirm_seconds: 0.3
+  tug_min_standing_seconds: 3.0
+  walk_displacement_body_fraction: 0.3
+  failed_rise_knee_angle_gain: 20.0
+  tug_flag_seconds: 12.0
+  sts_flag_seconds: 15.0
+  sts_repetitions: 5

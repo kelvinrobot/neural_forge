@@ -1,0 +1,79 @@
+# Skin area thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+lesion_finder:
+  skin_cr_range: [133, 180]
+  skin_cb_range: [77, 135]
+  min_skin_fraction_frame: 0.05
+  detection_interval_frames: 5
+  best_frames_per_step: 2
+  min_skin_fraction_in_box: 0.3
+  min_box_area_fraction: 0.0005
+  max_box_area_fraction: 0.25
+  iou_match_threshold: 0.3
+  min_region_hits: 2
+  max_regions_per_step: 6
+  crop_padding_fraction: 0.3
+  grid_cells: 4
+  grid_min_skin_fraction: 0.6
+  grid_task: skin_patch_screen
+  grid_abnormal_label: abnormal_skin
+  grid_abnormal_probability: 0.6
+
+lesion_classifier:
+  zero_shot_task: skin_lesion
+  normal_label: normal_skin
+  top_k: 3
+  flag_probability: 0.45
+  consultation_probability_low: 0.30
+  consultation_probability_high: 0.60
+  consultation_margin_max: 0.15
+  consultation_question: >-
+    This is a webcam close-up of a skin area taken for an educational screening.
+    Describe the lesion morphology (size, colour, border, surface, distribution) and say which
+    skin conditions it most resembles, without making a diagnosis.
+  label_flags:
+    mpox:
+      code: skin_pattern_mpox
+      title: Lesions resembling mpox
+      severity: high
+    chickenpox:
+      code: skin_pattern_chickenpox
+      title: Lesions resembling chickenpox
+      severity: moderate
+    measles_rash:
+      code: skin_pattern_measles
+      title: Rash resembling measles
+      severity: high
+    ringworm:
+      code: skin_pattern_ringworm
+      title: Patch resembling ringworm
+      severity: low
+    eczema:
+      code: skin_pattern_eczema
+      title: Patch resembling eczema
+      severity: low
+    acne:
+      code: skin_pattern_acne
+      title: Spots resembling acne
+      severity: low
+
+pigmentation:
+  analysis_interval_frames: 2
+  skin_cr_range: [133, 180]
+  skin_cb_range: [77, 135]
+  min_skin_pixels: 2000
+  smoothing_kernel: 5
+  depigmented_delta_l: 12.0
+  hyperpigmented_delta_l: 12.0
+  specular_min_lightness: 92.0
+  specular_max_chroma: 8.0
+  min_patch_area_fraction: 0.004
+  border_contrast_min: 6.0
+  depigmented_fraction_flag: 0.02
+  hyperpigmented_fraction_flag: 0.04
+  consistency_fraction: 0.5
+  crops_to_keep: 3
+  crop_padding_fraction: 0.3

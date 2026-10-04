@@ -1,0 +1,248 @@
+# Face examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: face
+version: "1.0"
+title:
+  en: Face examination
+description:
+  en: >-
+    A guided educational screening of facial symmetry and movement, facial expression, signs of pain
+    and lip and skin colour. It takes about three minutes.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Face the camera so your whole face is visible. Make sure your face is evenly lit from the front
+        and move your hair away from your forehead. Press "Ready" when you are set.
+    tips:
+      en:
+        - Sit about an arm's length from the camera.
+        - Avoid having a window or lamp behind you.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Whole face detected with good image quality.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Turn toward the light and keep your whole face inside the picture.
+
+  - id: colour_reference
+    step_number: 2
+    title:
+      en: Colour reference
+    instruction:
+      en: >-
+        Hold a plain white or grey card (a sheet of white paper works) flat next to your face for 5 seconds.
+        You can skip this step if you do not have one.
+    tips:
+      en:
+        - Keep the whole card in view and avoid glare.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Reference card detected in enough frames.
+    active_agents: []
+    captures_colour_reference: true
+    skippable: true
+    repeat_guidance:
+      en:
+        - Hold the card flat and still, fully inside the picture, next to your cheek.
+
+  - id: relaxed_face
+    step_number: 3
+    title:
+      en: Relaxed face
+    instruction:
+      en: Relax your face completely and look at the camera. Please do not speak. Hold for 10 seconds.
+    tips:
+      en:
+        - Let your mouth and cheeks rest naturally.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of clear, relaxed face frames.
+    active_agents: [facial_symmetry, facial_expression, pain, face_colour]
+    repeat_guidance:
+      en:
+        - Keep your head still and your face in the centre of the screen.
+
+  - id: big_smile
+    step_number: 4
+    title:
+      en: Big smile
+    instruction:
+      en: Smile as wide as you can, showing your teeth, and hold it for 5 seconds.
+    tips:
+      en:
+        - Make the biggest smile you can.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of a held smile.
+    active_agents: [facial_symmetry, facial_expression]
+    repeat_guidance:
+      en:
+        - Hold the smile until the step ends and keep facing the camera.
+
+  - id: relax
+    step_number: 5
+    title:
+      en: Relax
+    instruction:
+      en: Relax your face again for 3 seconds.
+    tips:
+      en:
+        - Let your face go back to rest.
+    camera_setup: face
+    get_ready_seconds: 0
+    min_duration_seconds: 3
+    max_duration_seconds: 8
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 10
+      description: Three seconds of relaxed face.
+    active_agents: [facial_symmetry]
+
+  - id: raise_eyebrows
+    step_number: 6
+    title:
+      en: Raise eyebrows
+    instruction:
+      en: Raise both eyebrows as high as you can, as if you are surprised, and hold for 5 seconds.
+    tips:
+      en:
+        - Keep your hair away from your forehead so we can see it move.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of raised eyebrows.
+    active_agents: [facial_symmetry, facial_expression]
+    repeat_guidance:
+      en:
+        - Lift your eyebrows as high as you can and hold them there.
+
+  - id: close_eyes_tightly
+    step_number: 7
+    title:
+      en: Close eyes tightly
+    instruction:
+      en: Squeeze both eyes shut as tightly as you can and hold for 5 seconds.
+    tips:
+      en:
+        - Keep your face toward the camera while your eyes are closed.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of tight eye closure.
+    active_agents: [facial_symmetry, facial_expression]
+    repeat_guidance:
+      en:
+        - Squeeze your eyes shut firmly and keep your head still.
+
+  - id: puff_cheeks
+    step_number: 8
+    title:
+      en: Puff cheeks
+    instruction:
+      en: Fill your cheeks with air, keep your lips closed, and hold for 5 seconds.
+    tips:
+      en:
+        - Try not to let any air escape.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 12
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of puffed cheeks.
+    active_agents: [facial_symmetry, facial_expression]
+    repeat_guidance:
+      en:
+        - Take a breath, puff out both cheeks and keep your lips sealed.
+
+  - id: facial_expressions
+    step_number: 9
+    title:
+      en: Facial expressions
+    instruction:
+      en: >-
+        When prompted, make a happy face, then a surprised face, then a sad face. Each one lasts
+        5 seconds. Follow the prompt on the screen.
+    tips:
+      en:
+        - Make each expression clearly; it is fine to exaggerate.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 15
+    max_duration_seconds: 25
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 60
+      description: Fifteen seconds covering the three prompted expressions.
+    active_agents: [facial_expression]
+    allow_motion: true
+    prompts:
+      - at_seconds: 0
+        text:
+          en: Make a happy face.
+      - at_seconds: 5
+        text:
+          en: Now make a surprised face.
+      - at_seconds: 10
+        text:
+          en: Now make a sad face.
+    repeat_guidance:
+      en:
+        - Follow each prompt as it appears and keep your face in view.
+
+  - id: natural_observation
+    step_number: 10
+    title:
+      en: Natural observation
+    instruction:
+      en: Look at the camera naturally and relax for 20 seconds. You do not need to do anything.
+    tips:
+      en:
+        - Blink and breathe normally.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 20
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 80
+      description: Twenty seconds of natural face observation.
+    active_agents: [facial_expression, pain, face_colour]
+    repeat_guidance:
+      en:
+        - Stay facing the camera with your face in the centre of the screen.

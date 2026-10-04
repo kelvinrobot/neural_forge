@@ -1,0 +1,403 @@
+# Posture, joints and walking examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: posture
+version: "1.0"
+title:
+  en: Posture, joints and walking examination
+description:
+  en: >-
+    A guided educational screening of standing posture, joint movement, balance, walking and two timed
+    functional tests. It takes about seven minutes and needs clear floor space.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Place the camera so your whole body from head to feet is visible, standing about 3 metres away,
+        with clear floor space around you. Press "Ready" when you are in place.
+    tips:
+      en:
+        - Prop the camera at about waist height.
+        - Wear clothes that show the shape of your body if possible.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Whole body from head to feet detected.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Step back until your head and feet are both inside the picture.
+
+  - id: stand_front
+    step_number: 2
+    title:
+      en: Stand facing the camera
+    instruction:
+      en: Stand naturally facing the camera with your arms by your sides for 10 seconds.
+    tips:
+      en:
+        - Stand as you normally would; do not try to stand extra straight.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of front-view standing.
+    active_agents: [static_posture]
+    repeat_guidance:
+      en:
+        - Stand still with your whole body inside the picture.
+
+  - id: stand_side
+    step_number: 3
+    title:
+      en: Stand side-on
+    instruction:
+      en: Turn to the side and stand naturally for 10 seconds. Press "Ready" when you have turned.
+    tips:
+      en:
+        - Look straight ahead, not at the camera.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_side
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of side-view standing.
+    active_agents: [static_posture]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Turn fully sideways so your ear, shoulder, hip and ankle line up from the camera's view.
+
+  - id: stand_back
+    step_number: 4
+    title:
+      en: Stand with your back to the camera
+    instruction:
+      en: Turn so your back faces the camera and stand naturally for 10 seconds. Press "Ready" when you have turned.
+    tips:
+      en:
+        - Let your arms hang by your sides.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_back
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 40
+      description: Ten seconds of back-view standing.
+    active_agents: [static_posture]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Stand still with your back to the camera and your whole body in view.
+
+  - id: arms_forward_up
+    step_number: 5
+    title:
+      en: Arms forward and up
+    instruction:
+      en: >-
+        Turn to face the camera. Raise both arms forward and up over your head, then lower them.
+        Do this 3 times within 15 seconds. Press "Ready" when you are facing the camera.
+    tips:
+      en:
+        - Move slowly and only as far as is comfortable.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 25
+    completion_criteria:
+      type: events
+      event: repetitions
+      min_events: 3
+      min_valid_frames: 40
+      description: Three arm raises detected.
+    active_agents: [range_of_motion]
+    requires_patient_ready: true
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Raise both arms all the way up above your head each time, then bring them fully down.
+
+  - id: arms_sideways_up
+    step_number: 6
+    title:
+      en: Arms out to the sides
+    instruction:
+      en: Raise both arms out to the sides and up over your head, then lower them. Do this 3 times within 15 seconds.
+    tips:
+      en:
+        - Keep your elbows straight if you can.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 25
+    completion_criteria:
+      type: events
+      event: repetitions
+      min_events: 3
+      min_valid_frames: 40
+      description: Three sideways arm raises detected.
+    active_agents: [range_of_motion]
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Raise both arms out to the sides and all the way up, then fully down.
+
+  - id: knee_bends
+    step_number: 7
+    title:
+      en: Knee bends
+    instruction:
+      en: >-
+        Holding a chair if needed, bend your knees as far as is comfortable and stand back up. Do this
+        3 times within 15 seconds. You may skip this step.
+    tips:
+      en:
+        - Keep your heels on the floor.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 25
+    completion_criteria:
+      type: events
+      event: repetitions
+      min_events: 3
+      min_valid_frames: 40
+      description: Three knee bends detected.
+    active_agents: [range_of_motion]
+    skippable: true
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Bend your knees a little further each time and stand fully back up.
+
+  - id: balance_eyes_open
+    step_number: 8
+    title:
+      en: Balance, eyes open
+    instruction:
+      en: Stand with your feet together and your arms by your sides for 20 seconds. You may skip this step.
+    tips:
+      en:
+        - Look at a fixed point in front of you.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 20
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 80
+      description: Twenty seconds of standing with feet together.
+    active_agents: [balance]
+    skippable: true
+    repeat_guidance:
+      en:
+        - Stand still with your feet together and your whole body in view.
+
+  - id: balance_eyes_closed
+    step_number: 9
+    title:
+      en: Balance, eyes closed
+    instruction:
+      en: Stand the same way, feet together, but now close your eyes for 20 seconds. You may skip this step.
+    tips:
+      en:
+        - Open your eyes and steady yourself at any time if you feel unsteady.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 20
+    max_duration_seconds: 30
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 80
+      description: Twenty seconds of standing with eyes closed.
+    active_agents: [balance]
+    skippable: true
+    repeat_guidance:
+      en:
+        - Stand still with your feet together, eyes closed, and your whole body in view.
+
+  - id: single_leg_right
+    step_number: 10
+    title:
+      en: Stand on one leg, right
+    instruction:
+      en: Lift your left foot and stand on your right leg for up to 10 seconds. You may skip this step.
+    tips:
+      en:
+        - Lift your foot just a little off the floor.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 14
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 30
+      complete_on_max_duration: true
+      description: Up to ten seconds of standing on the right leg.
+    active_agents: [balance, gait]
+    skippable: true
+    repeat_guidance:
+      en:
+        - Face the camera with your whole body in view and lift your left foot.
+
+  - id: single_leg_left
+    step_number: 11
+    title:
+      en: Stand on one leg, left
+    instruction:
+      en: Lift your right foot and stand on your left leg for up to 10 seconds. You may skip this step.
+    tips:
+      en:
+        - Lift your foot just a little off the floor.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_standing
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 14
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 30
+      complete_on_max_duration: true
+      description: Up to ten seconds of standing on the left leg.
+    active_agents: [balance, gait]
+    skippable: true
+    repeat_guidance:
+      en:
+        - Face the camera with your whole body in view and lift your right foot.
+
+  - id: walking
+    step_number: 12
+    title:
+      en: Walking
+    instruction:
+      en: >-
+        Walk across in front of the camera from one side to the other and back, at your normal pace,
+        twice. Press "Ready" when you are at the starting side.
+    tips:
+      en:
+        - Walk sideways across the camera's view, not toward it.
+        - Let your arms swing naturally.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_moving
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 90
+    completion_criteria:
+      type: events
+      event: steps
+      min_events: 12
+      min_valid_frames: 60
+      description: At least twelve steps detected.
+    active_agents: [gait]
+    requires_patient_ready: true
+    allow_motion: true
+    repeat_guidance:
+      en:
+        - Walk across the full width of the picture so your feet stay visible.
+
+  - id: timed_up_and_go
+    step_number: 13
+    title:
+      en: Timed Up and Go
+    instruction:
+      en: >-
+        Sit on a chair in view of the camera, with a mark on the floor 3 metres away. When you hear "go",
+        stand up, walk to the mark, turn around, walk back and sit down, at your normal pace. Press "Ready"
+        when you are seated. You may skip this step.
+    tips:
+      en:
+        - Use a chair that will not slide.
+        - Walk at your usual, safe pace; this is not a race.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_moving
+    get_ready_seconds: 3
+    min_duration_seconds: 4
+    max_duration_seconds: 60
+    completion_criteria:
+      type: state
+      state: seated_after_walk
+      min_valid_frames: 30
+      description: Seated again after walking to the mark and back.
+    active_agents: [functional_test]
+    requires_patient_ready: true
+    skippable: true
+    allow_motion: true
+    prompts:
+      - at_seconds: 0
+        text:
+          en: Go!
+    repeat_guidance:
+      en:
+        - Start fully seated with your knees and feet visible, and sit all the way back down at the end.
+
+  - id: sit_to_stand
+    step_number: 14
+    title:
+      en: Five times sit to stand
+    instruction:
+      en: >-
+        Sit with your arms crossed on your chest. When you hear "go", stand up fully and sit down again
+        5 times as fast as you safely can. Press "Ready" when you are seated. You may skip this step.
+    tips:
+      en:
+        - Stand up straight each time and sit down fully.
+    safety_note:
+      en: Have a chair or wall within reach and, ideally, someone nearby. Stop immediately if you feel dizzy or have pain.
+    camera_setup: full_body_moving
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 60
+    completion_criteria:
+      type: events
+      event: repetitions
+      min_events: 5
+      min_valid_frames: 30
+      description: Five complete sit-to-stand repetitions detected.
+    active_agents: [functional_test]
+    requires_patient_ready: true
+    skippable: true
+    allow_motion: true
+    prompts:
+      - at_seconds: 0
+        text:
+          en: Go!
+    repeat_guidance:
+      en:
+        - Turn slightly sideways to the camera so your knees and hips are clearly visible.

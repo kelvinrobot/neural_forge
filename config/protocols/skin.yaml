@@ -1,0 +1,207 @@
+# Skin examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: skin
+version: "1.0"
+title:
+  en: Skin examination
+description:
+  en: >-
+    A guided educational screening of the skin of the face and forearms, plus any area that worries you,
+    looking for spots, rashes, patches and changes in skin colour. It takes about two minutes.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Find bright, even light. Daylight from a window is best; avoid strong shadows and coloured lights.
+        Press "Ready" when you are in good light.
+    tips:
+      en:
+        - Face the window rather than having it behind you.
+        - Turn off coloured or very warm lamps if you can.
+    camera_setup: skin_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Bright, sharp image.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Move closer to a window or turn on a bright white light.
+
+  - id: colour_reference
+    step_number: 2
+    title:
+      en: Colour reference
+    instruction:
+      en: >-
+        Hold a plain white or grey card (a sheet of white paper works) in view of the camera for 5 seconds.
+        You can skip this step if you do not have one.
+    tips:
+      en:
+        - Keep the card flat and avoid glare.
+    camera_setup: skin_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Reference card detected in enough frames.
+    active_agents: []
+    captures_colour_reference: true
+    skippable: true
+    repeat_guidance:
+      en:
+        - Hold the card flat and still so all four corners are visible.
+
+  - id: face_front
+    step_number: 3
+    title:
+      en: Face skin, front
+    instruction:
+      en: Face the camera and keep still for 5 seconds.
+    tips:
+      en:
+        - Move your hair away from your face.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 12
+      description: Five seconds of the front of the face.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    repeat_guidance:
+      en:
+        - Keep your whole face in the picture and hold still.
+
+  - id: face_left
+    step_number: 4
+    title:
+      en: Face skin, left side
+    instruction:
+      en: Turn your head to show the left side of your face to the camera and keep still for 5 seconds.
+    tips:
+      en:
+        - Turn slowly until your left cheek and ear face the camera.
+    camera_setup: face_profile
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 12
+      description: Five seconds of the left side of the face.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    repeat_guidance:
+      en:
+        - Turn so your left cheek fills the picture and hold still.
+
+  - id: face_right
+    step_number: 5
+    title:
+      en: Face skin, right side
+    instruction:
+      en: Turn your head to show the right side of your face to the camera and keep still for 5 seconds.
+    tips:
+      en:
+        - Turn slowly until your right cheek and ear face the camera.
+    camera_setup: face_profile
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 12
+      description: Five seconds of the right side of the face.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    repeat_guidance:
+      en:
+        - Turn so your right cheek fills the picture and hold still.
+
+  - id: forearms_inner
+    step_number: 6
+    title:
+      en: Forearms, inner side
+    instruction:
+      en: >-
+        Hold both forearms close to the camera with the inner side facing it, and keep still for 8 seconds.
+        Press "Ready" when your arms are in place.
+    tips:
+      en:
+        - Roll your sleeves up to the elbow.
+    camera_setup: skin_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Eight seconds of the inner forearms.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Hold both forearms side by side, close to the camera and in good light.
+
+  - id: forearms_outer
+    step_number: 7
+    title:
+      en: Forearms, outer side
+    instruction:
+      en: Turn your forearms over so the outer side faces the camera, and keep still for 8 seconds.
+    tips:
+      en:
+        - Keep both forearms in the picture.
+    camera_setup: skin_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Eight seconds of the outer forearms.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    repeat_guidance:
+      en:
+        - Hold both forearms side by side, close to the camera and in good light.
+
+  - id: area_of_concern
+    step_number: 8
+    title:
+      en: Area of concern
+    instruction:
+      en: >-
+        Hold any skin area that worries you about 20 to 30 centimetres from the camera and keep still for
+        10 seconds. Press "Ready" when it is in place. After this you can choose "Add area" to show another
+        area, or skip this step if there is nothing else.
+    tips:
+      en:
+        - Make sure the area is in focus and well lit.
+        - Avoid covering the area with your fingers.
+    safety_note:
+      en: Do not scratch, squeeze or uncover painful wounds for this step.
+    camera_setup: skin_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 10
+    max_duration_seconds: 25
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 25
+      description: Ten seconds of a clear view of the area of concern.
+    active_agents: [lesion_finder, lesion_classifier, pigmentation]
+    requires_patient_ready: true
+    skippable: true
+    repeatable: true
+    max_repetitions: 5
+    repeat_guidance:
+      en:
+        - Hold the area still, 20 to 30 centimetres from the camera, in bright light.

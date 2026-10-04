@@ -1,0 +1,93 @@
+# Face area thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+facial_symmetry:
+  baseline_steps: [relaxed_face, relax]
+  smile_steps: [big_smile]
+  brow_steps: [raise_eyebrows]
+  eye_closure_steps: [close_eyes_tightly]
+  cheek_puff_steps: [puff_cheeks]
+  excursion_percentile: 90
+  resting_corner_difference_iod: 0.035
+  smile_excursion_asymmetry_ratio: 0.30
+  min_smile_excursion_iod: 0.04
+  nasolabial_asymmetry_ratio: 0.10
+  brow_raise_asymmetry_ratio: 0.40
+  min_brow_raise_iod: 0.025
+  eye_closure_incomplete_ear: 0.16
+  eye_closure_asymmetry_ear: 0.06
+  cheek_puff_asymmetry_ratio: 0.35
+  min_cheek_expansion_iod: 0.015
+  lip_seal_gap_iod: 0.06
+
+facial_expression:
+  expression_steps: [big_smile, raise_eyebrows, close_eyes_tightly, puff_cheeks, facial_expressions]
+  observation_steps: [natural_observation, relaxed_face]
+  expression_prompt_step: facial_expressions
+  key_blendshapes:
+    - mouthSmileLeft
+    - mouthSmileRight
+    - cheekSquintLeft
+    - cheekSquintRight
+    - browInnerUp
+    - browOuterUpLeft
+    - browOuterUpRight
+    - browDownLeft
+    - browDownRight
+    - eyeSquintLeft
+    - eyeSquintRight
+    - eyeWideLeft
+    - eyeWideRight
+    - jawOpen
+    - mouthFrownLeft
+    - mouthFrownRight
+    - cheekPuff
+    - mouthPucker
+    - noseSneerLeft
+    - noseSneerRight
+  expression_windows:
+    happy:
+      start_seconds: 0
+      end_seconds: 5
+      blendshapes: [mouthSmileLeft, mouthSmileRight, cheekSquintLeft, cheekSquintRight]
+    surprised:
+      start_seconds: 5
+      end_seconds: 10
+      blendshapes: [browInnerUp, browOuterUpLeft, browOuterUpRight, eyeWideLeft, eyeWideRight, jawOpen]
+    sad:
+      start_seconds: 10
+      end_seconds: 15
+      blendshapes: [mouthFrownLeft, mouthFrownRight, browInnerUp]
+  expression_target_activation: 0.30
+  low_percentile: 5
+  high_percentile: 95
+  expression_range_top_n: 6
+  hypomimia_expression_range_max: 0.30
+  spontaneous_variability_min: 0.015
+  blink_blendshape_threshold: 0.5
+  blink_rate_low_per_minute: 10
+  min_expressions_achieved: 2
+
+pain:
+  intensity_scale: 5.0
+  brow_lowerer: [browDownLeft, browDownRight]
+  cheek_raiser: [cheekSquintLeft, cheekSquintRight]
+  lid_tightener: [eyeSquintLeft, eyeSquintRight]
+  nose_wrinkler: [noseSneerLeft, noseSneerRight]
+  upper_lip_raiser: [mouthUpperUpLeft, mouthUpperUpRight]
+  eye_closure: [eyeBlinkLeft, eyeBlinkRight]
+  eye_closure_threshold: 0.6
+  min_eye_closure_seconds: 0.5
+  pspi_flag_median: 3.0
+  pspi_high_frame_threshold: 4.0
+  pspi_high_fraction_flag: 0.3
+
+face_colour:
+  min_region_pixels: 150
+  cyanosis_lip_skin_delta_a_max: 3.0
+  cyanosis_lip_skin_delta_b_max: -4.0
+  pallor_lip_a_max: 12.0
+  pallor_lip_skin_delta_a_max: 5.0
+  min_calibration_confidence: 0.3

@@ -1,0 +1,102 @@
+# Safety agent rules: applied to every reasoning output before it reaches the patient.
+
+disclaimer:
+  en: >-
+    Educational screening only. Neural Forge is not a medical device and does not diagnose any condition.
+    Webcam measurements can be wrong. Always consult a qualified health professional about your health,
+    and seek emergency care for sudden or severe symptoms.
+
+condition_name_prefix:
+  en: Possible
+
+hedging_prefixes: [possible, possibly, suspected, signs, features, pattern, findings]
+
+confidence_statement:
+  en: "(screening confidence: {percent}%)"
+
+summary_confidence_statement:
+  en: "Overall screening confidence: {percent}%."
+
+definitive_language:
+  - pattern: "\\byou (?:definitely |clearly |certainly )?have\\b"
+    replacement: "the screening signs may be consistent with"
+  - pattern: "\\bthe patient (?:definitely |clearly )?has\\b"
+    replacement: "the patient shows signs that may be consistent with"
+  - pattern: "\\b(?:you are|the patient is) suffering from\\b"
+    replacement: "the screening signs may be consistent with"
+  - pattern: "\\bdiagnosed with\\b"
+    replacement: "showing signs that may be consistent with"
+  - pattern: "\\bthe diagnosis is\\b"
+    replacement: "the screening impression is"
+  - pattern: "\\bdiagnosis\\b"
+    replacement: "screening impression"
+  - pattern: "\\bdiagnoses\\b"
+    replacement: "screening impressions"
+  - pattern: "\\bconfirms\\b"
+    replacement: "may suggest"
+  - pattern: "\\bconfirmed\\b"
+    replacement: "suggested"
+  - pattern: "\\bconfirm\\b"
+    replacement: "suggest"
+  - pattern: "\\bdefinitely\\b"
+    replacement: "possibly"
+  - pattern: "\\bcertainly\\b"
+    replacement: "possibly"
+  - pattern: "\\bwithout (?:a )?doubt\\b"
+    replacement: "possibly"
+  - pattern: "\\bguarantees?\\b"
+    replacement: "suggests"
+  - pattern: "\\bproves?\\b"
+    replacement: "suggests"
+  - pattern: "\\bthis is (?=(?:a|an) [a-z]+ (?:case|disease|infection)\\b)"
+    replacement: "this may resemble "
+
+red_flags:
+  - code: stroke_pattern
+    flag_codes: [facial_asymmetry_forehead_sparing, arm_drift]
+    min_confidence: 0.3
+    urgency: emergency
+    message:
+      en: >-
+        URGENT: one-sided facial weakness with forehead sparing or one-sided arm drift can be a sign of a
+        stroke. If this is new, call emergency services immediately.
+  - code: seizure_like_movement
+    flag_codes: [seizure_like_movement]
+    min_confidence: 0.3
+    urgency: emergency
+    message:
+      en: >-
+        URGENT: rhythmic jerking of several limbs was detected. If this was not intentional, or if someone
+        is having a seizure, call emergency services immediately.
+  - code: cyanosis
+    flag_codes: [central_cyanosis_lips, blue_tongue, nail_bed_cyanosis]
+    min_confidence: 0.3
+    urgency: urgent
+    message:
+      en: >-
+        URGENT: a bluish colour of the lips, tongue or nails can mean low oxygen. Seek medical care urgently,
+        and call emergency services if there is any difficulty breathing.
+  - code: peripheral_facial_weakness
+    flag_codes: [whole_side_facial_weakness]
+    min_confidence: 0.3
+    urgency: urgent
+    message:
+      en: >-
+        URGENT: weakness of one whole side of the face should be assessed by a clinician as soon as possible,
+        ideally within 72 hours, and immediately if there is any other weakness or trouble speaking.
+  - code: notifiable_rash
+    flag_codes: [skin_pattern_mpox, skin_pattern_measles]
+    min_confidence: 0.4
+    urgency: urgent
+    message:
+      en: >-
+        A rash that resembles a contagious infection was seen. Contact a health service promptly, tell them
+        about the rash before visiting, and avoid close contact with others until you have been assessed.
+
+standard_limitations:
+  en:
+    - This is an educational webcam screening, not a medical examination or diagnosis.
+    - Measurements depend on lighting, camera quality, distance and how each step was performed.
+    - Colour findings are affected by skin tone, lighting colour and camera processing.
+    - Thresholds are educational defaults and have not been clinically validated.
+    - A normal result does not rule out a medical condition.

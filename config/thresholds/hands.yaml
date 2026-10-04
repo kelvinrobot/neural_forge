@@ -1,0 +1,79 @@
+# Hand area thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+hand_colour:
+  palm_steps: [palms]
+  nail_steps: [backs_of_hands]
+  nail_fingers: [index, middle, ring, little]
+  nail_roi_radius_fraction: 0.28
+  min_region_pixels: 80
+  forearm_length_fraction: 0.6
+  forearm_width_fraction: 0.6
+  skin_cr_range: [133, 180]
+  skin_cb_range: [77, 135]
+  palm_pallor_a_max: 10.0
+  palm_pallor_skin_delta_a_max: 1.0
+  nail_cyanosis_skin_delta_b_max: -6.0
+  nail_cyanosis_skin_delta_a_max: 2.0
+  min_calibration_confidence: 0.3
+
+capillary_refill:
+  press_steps: [capillary_press]
+  release_steps: [capillary_release]
+  fingers: [thumb, index, middle, ring, little]
+  nail_roi_radius_fraction: 0.28
+  min_region_pixels: 30
+  baseline_window_seconds: 1.8
+  blanch_window_seconds: 0.4
+  min_blanch_delta_a: 3.0
+  recovery_fraction: 0.9
+  sustain_samples: 3
+  smoothing_samples: 3
+  crt_threshold_seconds: 2.0
+
+finger_shape:
+  side_view_steps:
+    finger_side_right: right
+    finger_side_left: left
+  window_steps: [nail_to_nail]
+  finger: index
+  skin_cr_range: [133, 180]
+  skin_cb_range: [77, 135]
+  nail_region_fraction: [0.45, 0.8]
+  profile_samples: 7
+  dpd_ipd_ratio_flag: 1.0
+  window_min_area_ratio: 0.02
+  window_absent_fraction: 0.7
+  crops_to_keep: 3
+  crop_padding_fraction: 0.4
+  zero_shot_task: finger_clubbing
+  clubbed_label: clubbed_finger
+  zero_shot_flag_probability: 0.6
+  consultation_probability_low: 0.35
+  consultation_probability_high: 0.65
+  consultation_question: >-
+    This is a side view of an index fingertip taken with a webcam for an educational screening.
+    Describe the shape of the nail and fingertip, and say whether the nail fold angle looks
+    flattened or the fingertip looks bulbous, as seen in finger clubbing.
+
+joint_appearance:
+  alignment_steps: [palms, backs_of_hands]
+  swelling_steps: [backs_of_hands]
+  fingers: [index, middle, ring, little]
+  skin_cr_range: [133, 180]
+  skin_cb_range: [77, 135]
+  ulnar_deviation_mean_degrees: 12.0
+  pip_width_ratio_flag: 1.25
+  asymmetry_degrees: 10.0
+  crops_to_keep: 3
+  crop_padding_fraction: 0.15
+  zero_shot_task: knuckle_swelling
+  swollen_label: swollen_knuckles
+  zero_shot_flag_probability: 0.6
+  consultation_probability_low: 0.35
+  consultation_probability_high: 0.65
+  consultation_question: >-
+    This is a photograph of the back of a hand taken with a webcam for an educational screening.
+    Describe the knuckles and finger joints, and say whether any joint looks swollen, red or deformed.

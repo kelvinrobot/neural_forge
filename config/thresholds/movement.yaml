@@ -1,0 +1,95 @@
+# Movement disorder thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+tremor:
+  rest_steps: [hands_at_rest]
+  postural_steps: [arms_out]
+  kinetic_steps:
+    finger_to_nose_right: right
+    finger_to_nose_left: left
+  palm_length_cm: 9.5
+  analysis_band_hz: [3.0, 12.0]
+  parkinsonian_band_hz: [3.5, 6.5]
+  essential_band_hz: [4.0, 12.0]
+  min_amplitude_cm: 0.15
+  min_regularity: 0.35
+  min_duration_seconds: 4.0
+  min_sampling_rate_hz: 8.0
+  rest_dominance_ratio: 1.0
+  live_window_seconds: 1.0
+
+finger_tapping:
+  step_sides:
+    finger_tapping_right: right
+    finger_tapping_left: left
+  palm_length_cm: 9.5
+  min_tap_interval_seconds: 0.08
+  peak_prominence_fraction: 0.25
+  min_amplitude_palm_fraction: 0.15
+  slow_tap_rate_hz: 2.0
+  amplitude_decrement_fraction: 0.30
+  interval_increase_fraction: 0.30
+  hesitation_interval_factor: 2.0
+  hesitation_count_flag: 2
+  asymmetry_ratio_flag: 0.25
+
+coordination:
+  flipping_steps:
+    hand_flipping_right: right
+    hand_flipping_left: left
+  nose_steps:
+    finger_to_nose_right: right
+    finger_to_nose_left: left
+  shoulder_width_cm: 39.0
+  min_keypoint_score: 0.3
+  touch_distance_shoulder_fraction: 0.35
+  touch_prominence_shoulder_fraction: 0.15
+  min_touch_interval_seconds: 0.6
+  min_touches: 3
+  dysmetria_error_cm: 3.0
+  terminal_window_seconds: 0.6
+  intention_tremor_amplitude_cm: 0.8
+  flip_hysteresis: 0.25
+  min_flip_cycles: 4
+  slow_flip_rate_hz: 1.0
+  flip_interval_cv_max: 0.35
+  asymmetry_ratio_flag: 0.30
+
+arm_drift:
+  drift_steps: [arm_drift]
+  min_keypoint_score: 0.3
+  shoulder_width_cm: 39.0
+  start_window_seconds: 2.0
+  end_window_seconds: 2.0
+  min_window_samples: 5
+  drift_drop_shoulder_fraction: 0.12
+  drift_asymmetry_shoulder_fraction: 0.08
+  pronation_change_threshold: 0.35
+
+involuntary_movement:
+  quiet_steps: [quiet_sitting, hands_at_rest]
+  observed_keypoints: [nose, left_eye, right_eye, left_ear, right_ear, left_shoulder, right_shoulder, left_elbow, right_elbow, left_wrist, right_wrist]
+  head_keypoints: [nose, left_eye, right_eye, left_ear, right_ear]
+  limb_keypoints: [left_wrist, right_wrist, left_elbow, right_elbow]
+  seizure_excluded_steps: [finger_tapping_right, finger_tapping_left, hand_flipping_right, hand_flipping_left, finger_to_nose_right, finger_to_nose_left]
+  min_keypoint_score: 0.3
+  min_duration_seconds: 5.0
+  highpass_hz: 0.3
+  chorea_energy_min: 0.12
+  chorea_flatness_min: 0.35
+  chorea_regularity_max: 0.30
+  tic_speed_threshold: 0.8
+  tic_max_duration_seconds: 0.5
+  tic_min_count: 3
+  tic_similarity_min: 0.7
+  dystonia_head_tilt_degrees: 15.0
+  dystonia_shoulder_elevation_fraction: 0.12
+  dystonia_min_fraction: 0.7
+  seizure_band_hz: [1.0, 6.0]
+  seizure_regularity_min: 0.4
+  seizure_amplitude_shoulder_fraction: 0.25
+  seizure_min_limbs: 2
+  seizure_window_seconds: 4.0
+  seizure_check_interval_seconds: 1.0

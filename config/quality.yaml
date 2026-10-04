@@ -1,0 +1,155 @@
+# Camera quality gating, colour calibration and aggregation settings.
+# These are image-quality engineering values, not clinical thresholds.
+
+global:
+  analysis_width: 640
+  min_brightness: 50.0
+  max_brightness: 215.0
+  min_contrast: 20.0
+  min_blur_variance: 40.0
+  motion_step_blur_factor: 0.5
+  max_motion: 12.0
+  overexposed_fraction_max: 0.2
+  backlit_margin: 35.0
+  max_center_offset: 0.3
+  min_keypoint_score: 0.3
+  confirmation_frames: 4
+  ipd_mm: 63.0
+  camera_horizontal_fov_degrees: 60.0
+  assumed_body_height_m: 1.7
+  non_blocking_issues: [backlit, center_yourself]
+
+camera_setups:
+  face:
+    subject: face
+    size_measure: face_width
+    min_size: 0.18
+    max_size: 0.75
+  face_profile:
+    subject: none
+  both_eyes_close_up:
+    subject: face
+    size_measure: eye_span
+    min_size: 0.30
+    max_size: 0.95
+    min_blur_variance: 50.0
+  mouth_close_up:
+    subject: face
+    size_measure: mouth_width
+    min_size: 0.15
+    max_size: 0.80
+  both_hands:
+    subject: hands
+    min_count: 2
+    size_measure: hand_span
+    min_size: 0.12
+    max_size: 0.75
+  one_hand_close_up:
+    subject: hands
+    min_count: 1
+    size_measure: hand_span
+    min_size: 0.25
+    max_size: 1.2
+  fingers_close_up:
+    subject: hands
+    min_count: 1
+    size_measure: hand_span
+    min_size: 0.18
+    max_size: 1.2
+  upper_body_seated:
+    subject: pose
+    required_keypoints: [nose, left_shoulder, right_shoulder, left_elbow, right_elbow, left_wrist, right_wrist]
+    missing_issue: show_upper_body
+    size_measure: shoulder_width
+    min_size: 0.15
+    max_size: 0.70
+  full_body_standing:
+    subject: pose
+    required_keypoints: [nose, left_shoulder, right_shoulder, left_hip, right_hip, left_knee, right_knee, left_ankle, right_ankle]
+    missing_issue: show_full_body
+    size_measure: body_height
+    min_size: 0.45
+    max_size: 0.97
+  full_body_side:
+    subject: pose
+    required_keypoints: ["left_ear|right_ear", "left_shoulder|right_shoulder", "left_hip|right_hip", "left_knee|right_knee", "left_ankle|right_ankle"]
+    missing_issue: show_full_body
+    size_measure: body_height
+    min_size: 0.45
+    max_size: 0.97
+  full_body_back:
+    subject: pose
+    required_keypoints: [left_shoulder, right_shoulder, left_hip, right_hip, left_ankle, right_ankle]
+    missing_issue: show_full_body
+    size_measure: body_height
+    min_size: 0.45
+    max_size: 0.97
+  full_body_moving:
+    subject: pose
+    required_keypoints: ["left_shoulder|right_shoulder", "left_hip|right_hip", "left_ankle|right_ankle"]
+    missing_issue: show_full_body
+    size_measure: body_height
+    min_size: 0.25
+    max_size: 1.0
+  skin_close_up:
+    subject: none
+
+guidance:
+  too_dark:
+    en: Improve the lighting. Turn on a light or face a window.
+  too_bright:
+    en: The picture is too bright. Move away from direct sunlight.
+  overexposed:
+    en: Part of the picture is washed out. Reduce strong light shining on the camera or skin.
+  low_contrast:
+    en: The picture looks flat. Improve the lighting in front of you.
+  blurry:
+    en: The picture is blurry. Hold still and keep the camera steady.
+  hold_still:
+    en: Hold still.
+  face_not_found:
+    en: We cannot see your face. Face the camera.
+  hands_not_found:
+    en: We cannot see your hands. Hold them up in front of the camera.
+  show_both_hands:
+    en: Show both hands.
+  body_not_found:
+    en: We cannot see you. Step into view of the camera.
+  show_full_body:
+    en: Step back so your whole body, from head to feet, is in the picture.
+  show_upper_body:
+    en: Move back so your head, shoulders, elbows and hands are all in the picture.
+  move_closer:
+    en: Move closer to the camera.
+  move_back:
+    en: Move a little further from the camera.
+  center_yourself:
+    en: Move to the middle of the picture.
+  backlit:
+    en: There is bright light behind you. Turn so the light falls on your face.
+  frame_rejected:
+    en: A camera frame could not be read. Please keep the camera connected.
+  no_frames:
+    en: We are not receiving pictures from your camera. Check that the camera is on.
+
+colour_calibration:
+  grey_world_dark_cutoff: 20
+  grey_world_bright_cutoff: 235
+  min_gain: 0.6
+  max_gain: 1.8
+  smoothing_factor: 0.2
+  grey_world_base_confidence: 0.55
+  grey_world_chroma_limit: 25.0
+  card_max_saturation: 40
+  card_min_value: 120
+  card_min_area_fraction: 0.01
+  card_max_area_fraction: 0.35
+  card_max_channel_std: 18.0
+  card_confidence: 0.9
+  reference_frames_required: 10
+  session_reference_confidence: 0.8
+  illumination_change_tolerance: 0.15
+
+aggregation:
+  min_reading_confidence: 0.2
+  excluded_quality_flags: [poor, unusable]

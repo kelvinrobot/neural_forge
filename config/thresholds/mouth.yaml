@@ -1,0 +1,86 @@
+# Mouth area thresholds.
+# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
+# They are not validated clinical thresholds and must not be used for diagnosis.
+educational_defaults: true
+
+mouth_movement:
+  opening_steps: [open_wide]
+  protrusion_steps: [tongue_out]
+  lateral_steps:
+    tongue_left: left
+    tongue_right: right
+  search_extension_mouth_widths: 0.8
+  tongue_skin_delta_a: 6.0
+  teeth_min_lightness: 70.0
+  teeth_max_chroma: 18.0
+  tongue_min_pixels: 200
+  tongue_deviation_flag_iod: 0.08
+  opening_asymmetry_flag: 0.20
+  jaw_deviation_flag_iod: 0.06
+  lateral_reach_asymmetry_flag: 0.30
+
+oral_appearance:
+  interior_steps: [inside_mouth]
+  gum_steps: [show_gums]
+  corner_steps: [mouth_corners]
+  tongue_steps: [tongue_out]
+  crops_to_keep: 3
+  crop_padding_fraction: 0.25
+  corner_box_fraction: 0.35
+  search_extension_mouth_widths: 0.8
+  tongue_skin_delta_a: 6.0
+  teeth_min_lightness: 70.0
+  teeth_max_chroma: 18.0
+  tongue_min_pixels: 200
+  interior_erosion_mouth_fraction: 0.12
+  min_interior_pixels: 150
+  white_patch_min_lightness: 75.0
+  white_patch_max_chroma: 12.0
+  white_patch_fraction_flag: 0.12
+  pale_tongue_a_max: 14.0
+  blue_tongue_b_max: -2.0
+  gum_skin_delta_a_min: 4.0
+  gum_redness_delta_a_flag: 18.0
+  min_calibration_confidence: 0.3
+  zero_shot_flag_probability: 0.55
+  consultation_probability_low: 0.35
+  consultation_probability_high: 0.65
+  zero_shot_tasks:
+    oral_interior: oral_interior
+    gums: gums
+    lip_corners: lip_corners
+  normal_labels:
+    oral_interior: normal_mouth
+    gums: healthy_gums
+    lip_corners: normal_lip_corners
+  label_flags:
+    oral_thrush:
+      code: oral_thrush_appearance
+      title: White coating resembling oral thrush
+      severity: moderate
+    pale_tongue:
+      code: pale_tongue
+      title: Pale tongue
+      severity: moderate
+    blue_tongue:
+      code: blue_tongue
+      title: Bluish tongue
+      severity: high
+    gingival_inflammation:
+      code: gingival_inflammation_appearance
+      title: Inflamed-looking gums
+      severity: low
+    angular_cheilitis:
+      code: angular_cheilitis_appearance
+      title: Cracks at the corners of the mouth
+      severity: low
+  consultation_questions:
+    oral_interior: >-
+      This is a webcam photograph of the inside of a mouth taken for an educational screening.
+      Describe the tongue colour and surface and say whether white plaques, pallor or a bluish tint are visible.
+    gums: >-
+      This is a webcam photograph of gums with the lips pulled back, taken for an educational screening.
+      Describe the gum colour and contour and say whether they look swollen, red or bleeding.
+    lip_corners: >-
+      This is a close-up webcam photograph of a mouth corner taken for an educational screening.
+      Describe the skin at the corner of the lips and say whether cracks, redness or crusting are visible.

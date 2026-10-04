@@ -1,0 +1,238 @@
+# Hand examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: hands
+version: "1.0"
+title:
+  en: Hand examination
+description:
+  en: >-
+    A guided educational screening of palm and nail colour, finger alignment and joints, fingertip
+    shape and capillary refill. It takes about three minutes.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Hold both hands up in front of the camera in good light, with your sleeves pulled up to the elbow.
+        Press "Ready" when you are set.
+    tips:
+      en:
+        - Rest your device on a table so you can use both hands.
+        - Remove rings and watches if you can.
+    camera_setup: both_hands
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Both hands detected with good image quality.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Hold both hands fully inside the picture and turn toward the light.
+
+  - id: colour_reference
+    step_number: 2
+    title:
+      en: Colour reference
+    instruction:
+      en: >-
+        Hold a plain white or grey card (a sheet of white paper works) next to your hands for 5 seconds.
+        You can skip this step if you do not have one.
+    tips:
+      en:
+        - Keep the card flat and fully visible.
+    camera_setup: both_hands
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Reference card detected in enough frames.
+    active_agents: []
+    captures_colour_reference: true
+    skippable: true
+    repeat_guidance:
+      en:
+        - Hold the card flat and still, fully inside the picture, beside your hands.
+
+  - id: palms
+    step_number: 3
+    title:
+      en: Palms
+    instruction:
+      en: Show your palms to the camera with your fingers spread, and keep still for 8 seconds.
+    tips:
+      en:
+        - Keep your forearms in view too.
+    camera_setup: both_hands
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 30
+      description: Eight seconds of both palms.
+    active_agents: [hand_colour, joint_appearance]
+    repeat_guidance:
+      en:
+        - Spread your fingers and hold both hands still in the light.
+
+  - id: backs_of_hands
+    step_number: 4
+    title:
+      en: Backs of hands
+    instruction:
+      en: Turn your hands so the backs and nails face the camera, fingers spread, and hold for 8 seconds.
+    tips:
+      en:
+        - Remove nail polish if possible; it hides nail colour.
+    camera_setup: both_hands
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 30
+      description: Eight seconds of the backs of both hands.
+    active_agents: [hand_colour, joint_appearance]
+    repeat_guidance:
+      en:
+        - Turn your hands so the nails face the camera and spread your fingers.
+
+  - id: finger_side_right
+    step_number: 5
+    title:
+      en: Finger side view, right
+    instruction:
+      en: >-
+        Turn your right hand so the side of your index finger faces the camera, close up, and hold for
+        5 seconds. Press "Ready" when your finger is in place.
+    tips:
+      en:
+        - Hold the finger straight against a plain background if you can.
+    camera_setup: one_hand_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of the right index fingertip in profile.
+    active_agents: [finger_shape]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Bring your right index finger closer, side-on, and keep it still.
+
+  - id: finger_side_left
+    step_number: 6
+    title:
+      en: Finger side view, left
+    instruction:
+      en: >-
+        Now do the same with your left hand: the side of your left index finger facing the camera, for
+        5 seconds. Press "Ready" when your finger is in place.
+    tips:
+      en:
+        - Hold the finger straight against a plain background if you can.
+    camera_setup: one_hand_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of the left index fingertip in profile.
+    active_agents: [finger_shape]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Bring your left index finger closer, side-on, and keep it still.
+
+  - id: nail_to_nail
+    step_number: 7
+    title:
+      en: Nail-to-nail test
+    instruction:
+      en: >-
+        Press the backs of your two index fingernails together and hold them close to the camera for
+        5 seconds. Press "Ready" when your fingers are in place.
+    tips:
+      en:
+        - The nails should touch, with your fingers pointing down or sideways.
+    camera_setup: fingers_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Five seconds of the nail-to-nail window view.
+    active_agents: [finger_shape]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Hold the touching nails side-on to the camera and against a plain background.
+
+  - id: capillary_press
+    step_number: 8
+    title:
+      en: Capillary refill, press
+    instruction:
+      en: >-
+        Hold one hand close to the camera with a fingernail facing it. When the countdown ends, keep the
+        finger still for a moment, then press that fingernail firmly with the thumb of your other hand
+        when prompted, and keep pressing until you are told to release. Press "Ready" when your hand is in place.
+    tips:
+      en:
+        - Choose a fingernail without polish.
+    camera_setup: one_hand_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 7
+    max_duration_seconds: 10
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Baseline nail colour followed by pressure.
+    active_agents: [capillary_refill]
+    requires_patient_ready: true
+    prompts:
+      - at_seconds: 0
+        text:
+          en: Keep your finger still. Do not press yet.
+      - at_seconds: 2
+        text:
+          en: Now press the fingernail firmly and keep pressing.
+    repeat_guidance:
+      en:
+        - Keep the nail facing the camera before you press, then press firmly.
+
+  - id: capillary_release
+    step_number: 9
+    title:
+      en: Capillary refill, release
+    instruction:
+      en: Release now and keep the finger completely still in front of the camera.
+    tips:
+      en:
+        - Do not move the finger until the step ends.
+    camera_setup: one_hand_close_up
+    get_ready_seconds: 0
+    min_duration_seconds: 2
+    max_duration_seconds: 8
+    completion_criteria:
+      type: state
+      state: colour_returned_to_baseline
+      min_valid_frames: 10
+      complete_on_max_duration: true
+      description: Nail colour returned to baseline or the observation time ended.
+    active_agents: [capillary_refill]
+    repeat_guidance:
+      en:
+        - Press a little harder next time and keep the nail facing the camera after releasing.

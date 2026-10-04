@@ -1,0 +1,50 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Model weights and caches
+model_store/
+*.task
+*.onnx
+*.pt
+*.safetensors
+*.bin
+*.gguf
+.cache/
+huggingface/
+hf_cache/
+
+# Recordings and saved crops
+recordings/
+crops/
+*.mp4
+*.webm
+*.avi
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.python-version
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

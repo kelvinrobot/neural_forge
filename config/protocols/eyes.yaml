@@ -1,0 +1,277 @@
+# Eye examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+area: eyes
+version: "1.0"
+title:
+  en: Eye examination
+description:
+  en: >-
+    A guided educational screening of eyelid position, eye alignment, eye movements, blinking and the
+    colour of the whites of the eyes and the inner eyelids. It takes about four minutes.
+
+steps:
+  - id: get_positioned
+    step_number: 1
+    title:
+      en: Get positioned
+    instruction:
+      en: >-
+        Sit facing the camera about an arm's length away. Make sure your face is evenly lit from the front,
+        take off your glasses, and avoid having a window or lamp behind you. Press "Ready" when you are set.
+    tips:
+      en:
+        - Rest your device on a table so the camera stays still.
+        - Your whole face should be in the middle of the screen.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 2
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 8
+      description: Face detected with good image quality.
+    active_agents: []
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Face a window or lamp so the light falls on your face, not behind you.
+
+  - id: colour_reference
+    step_number: 2
+    title:
+      en: Colour reference
+    instruction:
+      en: >-
+        Hold a plain white or grey card (a sheet of white paper works) flat next to your face for 5 seconds.
+        This helps us correct the colours of your camera. You can skip this step if you do not have one.
+    tips:
+      en:
+        - Keep the whole card in view and avoid shiny glare on it.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 15
+      description: Reference card detected in enough frames.
+    active_agents: []
+    captures_colour_reference: true
+    skippable: true
+    repeat_guidance:
+      en:
+        - Hold the card flat and still, fully inside the picture, next to your cheek.
+
+  - id: look_straight
+    step_number: 3
+    title:
+      en: Look straight ahead
+    instruction:
+      en: >-
+        Look directly at the camera. Keep your head still and blink normally, as you usually would,
+        for 30 seconds.
+    tips:
+      en:
+        - Try not to stare or force your eyes open; just relax.
+        - Keep your chin level.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 30
+    max_duration_seconds: 45
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 120
+      description: Thirty seconds of clear eye tracking.
+    active_agents: [eyelid, eye_alignment, eye_movement, blink_alertness]
+    repeat_guidance:
+      en:
+        - Keep your head still and your face in the middle of the screen.
+
+  - id: eyes_close_up
+    step_number: 4
+    title:
+      en: Eyes close-up
+    instruction:
+      en: >-
+        Bring the camera closer so that your eyes fill most of the screen. Look straight ahead and keep
+        your eyes wide open for 8 seconds. Press "Ready" when the camera is in place.
+    tips:
+      en:
+        - Make sure the light is bright and falls on your eyes.
+        - Hold the camera steady.
+    camera_setup: both_eyes_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 30
+      description: Clear close-up frames of both eyes.
+    active_agents: [eye_appearance]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Move the camera a little closer and keep both eyes inside the picture.
+
+  - id: lower_eyelid
+    step_number: 5
+    title:
+      en: Lower eyelid check
+    instruction:
+      en: >-
+        With a clean finger, gently pull down both lower eyelids so the pink inside shows, and look up
+        for 8 seconds. Press "Ready" when your hands are clean and you are ready.
+    tips:
+      en:
+        - Pull gently; it should not hurt.
+        - Keep the camera close, as in the last step.
+    safety_note:
+      en: Wash your hands first and do not touch the eyeball itself.
+    camera_setup: both_eyes_close_up
+    get_ready_seconds: 3
+    min_duration_seconds: 8
+    max_duration_seconds: 20
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 25
+      description: Inner lower eyelids visible in enough frames.
+    active_agents: [eye_appearance]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Pull the lower eyelids down a little further and look upward.
+
+  - id: look_left
+    step_number: 6
+    title:
+      en: Look left
+    instruction:
+      en: >-
+        Move the camera back to about an arm's length. Without moving your head, look as far to your left
+        as is comfortable and hold for 5 seconds. Press "Ready" when the camera is back in place.
+    tips:
+      en:
+        - Only your eyes should move, not your head.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of gaze tracking to the left.
+    active_agents: [eye_movement]
+    requires_patient_ready: true
+    repeat_guidance:
+      en:
+        - Keep your head still and hold your eyes to the left until the step ends.
+
+  - id: look_right
+    step_number: 7
+    title:
+      en: Look right
+    instruction:
+      en: Without moving your head, look as far to your right as is comfortable and hold for 5 seconds.
+    tips:
+      en:
+        - Only your eyes should move, not your head.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of gaze tracking to the right.
+    active_agents: [eye_movement]
+    repeat_guidance:
+      en:
+        - Keep your head still and hold your eyes to the right until the step ends.
+
+  - id: look_up
+    step_number: 8
+    title:
+      en: Look up
+    instruction:
+      en: Without moving your head, look up as far as is comfortable and hold for 5 seconds.
+    tips:
+      en:
+        - Keep your chin level.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of upward gaze tracking.
+    active_agents: [eye_movement]
+    repeat_guidance:
+      en:
+        - Keep your head still and hold your eyes upward until the step ends.
+
+  - id: look_down
+    step_number: 9
+    title:
+      en: Look down
+    instruction:
+      en: Without moving your head, look down as far as is comfortable and hold for 5 seconds.
+    tips:
+      en:
+        - Keep your eyes slightly open so the camera can still see them.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 5
+    max_duration_seconds: 15
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 20
+      description: Five seconds of downward gaze tracking.
+    active_agents: [eye_movement]
+    repeat_guidance:
+      en:
+        - Look down without closing your eyes and keep your head still.
+
+  - id: sustained_upgaze
+    step_number: 10
+    title:
+      en: Sustained upward gaze
+    instruction:
+      en: >-
+        Look up without moving your head and keep looking up for 45 seconds. It is normal for this to feel
+        tiring; we are checking whether your eyelids get tired.
+    tips:
+      en:
+        - Blink if you need to, then look up again.
+    safety_note:
+      en: Stop and look straight ahead if your eyes become painful.
+    camera_setup: face
+    get_ready_seconds: 3
+    min_duration_seconds: 45
+    max_duration_seconds: 60
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 180
+      description: Forty-five seconds of eyelid tracking in upward gaze.
+    active_agents: [eyelid]
+    repeat_guidance:
+      en:
+        - Keep your head still and keep looking up for the whole step.
+
+  - id: rest
+    step_number: 11
+    title:
+      en: Rest
+    instruction:
+      en: Close your eyes and relax for 5 seconds. Well done, the eye examination is almost finished.
+    tips:
+      en:
+        - Keep your face toward the camera.
+    camera_setup: face
+    get_ready_seconds: 0
+    min_duration_seconds: 5
+    max_duration_seconds: 10
+    completion_criteria:
+      type: valid_frames
+      min_valid_frames: 10
+      description: Short rest period.
+    active_agents: []

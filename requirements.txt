@@ -1,0 +1,36 @@
+# Runtime dependencies for the Hugging Face Space container (CUDA 12.x, Python 3.11).
+# vLLM pins a compatible torch build; install order is handled by the Dockerfile.
+
+# API
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3
+httpx>=0.27
+PyYAML>=6.0
+
+# Numerics and imaging
+numpy>=1.26,<2.3
+scipy>=1.12
+opencv-python-headless>=4.9
+Pillow>=10.0
+
+# Perception models
+mediapipe>=0.10.14
+rtmlib>=0.0.13
+onnxruntime-gpu>=1.19
+ultralytics>=8.3.150
+git+https://github.com/ultralytics/CLIP.git
+
+# MedSigLIP encoder
+transformers>=4.53
+sentencepiece>=0.2
+protobuf>=4.25
+huggingface_hub>=0.24
+accelerate>=0.33
+
+# LLM serving (separate processes inside the same container)
+vllm>=0.11.0
+
+# Process management
+supervisor>=4.2
