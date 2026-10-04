@@ -1,5 +1,5 @@
 # Camera quality gating, colour calibration and aggregation settings.
-# These are image-quality engineering values, not clinical thresholds.
+# These are image-quality engineering values
 
 global:
   analysis_width: 640
