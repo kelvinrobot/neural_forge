@@ -103,7 +103,7 @@ def create_app() -> FastAPI:
     application = FastAPI(
         title=settings.app_name,
         version=__version__,
-        description="Educational webcam-based visual screening backend. Outputs are screening flags, never diagnoses.",
+        description="health care webcam-based visual screening backend. Outputs are screening flags, with  diagnoses.",
         lifespan=lifespan,
     )
     application.add_middleware(
