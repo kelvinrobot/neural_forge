@@ -1,6 +1,5 @@
 # Skin area thresholds.
-# EDUCATIONAL DEFAULTS ONLY: these values are illustrative screening cut-offs for teaching purposes.
-# They are not validated clinical thresholds and must not be used for diagnosis.
+
 educational_defaults: true
 
 lesion_finder:
