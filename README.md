@@ -37,7 +37,7 @@ Neural Forge is a Health care, real-time, webcam-based visual screening backend.
                                              SafetyAgent (rules YAML) ─▶ ReportAgent ─▶ report JSON + summary
 ```
 
-Perception models: MediaPipe Face Landmarker (478 landmarks, iris, 52 blendshapes), MediaPipe Hand Landmarker, RTMW whole-body pose (rtmlib + onnxruntime-gpu), YOLOE open-vocabulary lesion finder, MedSigLIP-448 zero-shot classifier (swappable for trained heads). LLMs run in separate vLLM processes; the API never loads them.
+
 
 ## Examination flow
 
