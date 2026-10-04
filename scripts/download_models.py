@@ -1,7 +1,4 @@
 """Download every model weight and task file into the model cache directory.
-
-Runs inside the Hugging Face Space container on startup. Already-downloaded files are skipped.
-HF_TOKEN is read from the environment only (Space secret). Do not run this on a development laptop.
 """
 
 import argparse
