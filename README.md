@@ -6,19 +6,18 @@ sdk: docker
 app_port: 7860
 startup_duration_timeout: 1h
 pinned: false
-short_description: Educational webcam visual screening backend (agents + vLLM)
+short_description:  Health care visual screening backend (agents + vLLM)
 ---
 
 # Neural Forge – AI Visual Diagnostic (backend)
 
-Neural Forge is an **educational**, real-time, webcam-based visual screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of Python agents measures landmarks, colours, movements and timings, compares them with educational thresholds, and produces **screening flags with confidence scores, never diagnoses**.
+Neural Forge is a Health care, real-time, webcam-based visual screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of Python agents measures landmarks, colours, movements and timings, compares them with educational thresholds, and produces **screening flags with confidence scores, it then  diagnoses.
 
-> **Educational disclaimer.** Neural Forge is not a medical device. It does not diagnose, treat or rule out any condition. Webcam measurements can be wrong. Always consult a qualified health professional, and seek emergency care for sudden or severe symptoms.
 
 ## Architecture
 
 ```
- Client (browser/app)                       Hugging Face Space (one GPU container)
+ Client (browser/app)                        Space (one GPU container)
  ───────────────────                        ─────────────────────────────────────────────────────────────
   camera frames  ──WebSocket──▶  FastAPI (:7860, public)
   controls                         │
@@ -96,10 +95,7 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 * `config/zero_shot_prompts.yaml` – MedSigLIP prompts and YOLOE detection prompts.
 * `.env.example` – environment variables (`NF_` prefix for the app).
 
-## Deployment
-
-The project is deployed only as a Hugging Face Space with the Docker SDK on a GPU (24 GB L4 or A10G). See [`deploy/HUGGINGFACE_SETUP.md`](deploy/HUGGINGFACE_SETUP.md).
 
 ## Tests
 
-Unit tests live in `tests/` and use synthetic landmark sequences (no model weights required): `pytest`.
+Unit tests live in `tests/` and use synthetic landmark sequences  `pytest`.
