@@ -1,6 +1,4 @@
-# Sign-to-condition rules used by the reasoning agent and as the rule-based fallback.
-# EDUCATIONAL DEFAULTS ONLY. A rule matches when every code in all_of is present and, if any_of is
-# non-empty, at least one code in any_of is present. Flag codes are produced by Python thresholds.
+
 
 flag_severity_urgency:
   low: none
