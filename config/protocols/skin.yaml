@@ -1,4 +1,4 @@
-# Skin examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+# Skin examination protocol. 
 area: skin
 version: "1.0"
 title:
