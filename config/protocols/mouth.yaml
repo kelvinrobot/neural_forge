@@ -1,4 +1,4 @@
-# Mouth examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+# Mouth examination protocol.
 area: mouth
 version: "1.0"
 title:
