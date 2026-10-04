@@ -1,4 +1,4 @@
-"""Abstract base class and shared helpers for area agents."""
+"""base class and shared helpers for area agents."""
 
 import math
 from abc import ABC, abstractmethod
