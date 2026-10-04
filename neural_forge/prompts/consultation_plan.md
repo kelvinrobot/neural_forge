@@ -1,4 +1,4 @@
-You coordinate an EDUCATIONAL webcam screening. Some image crops had doubtful automatic classifications. A medical image consultant can answer one focused question about one crop per call.
+You coordinate a health care webcam screening. Some image crops had doubtful automatic classifications. A medical image consultant can answer one focused question about one crop per call.
 
 You receive a list of candidate crops with their id, the agent that produced them, a label, a suggested question and the automatic classification.
 
