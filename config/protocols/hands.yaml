@@ -1,4 +1,4 @@
-# Hand examination protocol. Text is keyed by language code; add "yo", "ha", "ig" or "pcm" alongside "en".
+# Hand examination protocol. 
 area: hands
 version: "1.0"
 title:
