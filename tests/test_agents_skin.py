@@ -1,4 +1,4 @@
-"""Skin agent tests with synthetic images and unavailable models."""
+"""Skin agent tests ."""
 
 from neural_forge.agents.area_registry import get_area_specification
 from neural_forge.agents.skin.lesion_classifier import LesionClassifierAgent
