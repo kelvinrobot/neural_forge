@@ -21,3 +21,6 @@ venv/
 *.onnx
 *.task
 *.safetensors
+
+# Frontend is built and deployed separately
+frontend/
