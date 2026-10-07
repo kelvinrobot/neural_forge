@@ -26,13 +26,13 @@ Neural Forge is a real-time, camera-based clinical screening backend. A patient 
                                    │  per frame (thread pool)
                                    ▼
    FrameIngest ─▶ Quality ─▶ ColourCalibration ─▶ Shared Landmark Service ─▶ Area agents (only this area)
-   (decode, fps,   (light,     (card or grey-      (MediaPipe Face/Hands       (measurements, rolling
-    backpressure)   blur,       world, CIELAB)      VIDEO mode, RTMW pose,      buffers, real timestamps)
-                    framing)                        each at most once/frame)
+   (decode, fps,   (light,     (card or grey-      
+    backpressure)   blur,       world, CIELAB)           
+                    framing)                       
                                    │
                                    ▼  after the last step
-   Aggregator (median, IQR, step records) ─▶ ReasoningAgent (Qwen3-VL-4B via vLLM :8001, httpx)
-                                                 │  on demand: MedicalConsultantAgent (MedGemma 1.5 4B via vLLM :8002)
+   Aggregator (median, IQR, step records) ─▶ ReasoningAgent ( via vLLM :8001, httpx)
+                                                 │  on demand: MedicalConsultantAgent 
                                                  ▼
                                              SafetyAgent (rules YAML) ─▶ ReportAgent ─▶ report JSON + summary
 ```
@@ -54,18 +54,7 @@ For every step of `config/protocols/<area>.yaml` the orchestrator:
 
 After the last step: `examination_complete` → `analysis_started` → `report_ready`. `pause`/`resume` freeze the timer, `skip_step` skips optional steps, `stop` ends early (a report is built from completed steps), and `add_area` repeats the skin "area of concern" step.
 
-## API reference
 
-| Method | Path | Description |
-| --- | --- | --- |
-| POST | `/api/v1/sessions` | Create a session. Body: `area`, `consent` (must be `true`), `patient_context` (`age`, `sex`, `symptoms`), `preferred_language` (default `en`). Returns `session_id` and localised steps. |
-| WS | `/api/v1/ws/{area}/{session_id}` | Real-time examination stream. |
-| GET | `/api/v1/sessions/{id}/summary` | Aggregated findings JSON. |
-| GET | `/api/v1/sessions/{id}/report` | Final report (after analysis). |
-| POST | `/api/v1/sessions/{id}/question` | Follow-up question answered from the session findings. |
-| DELETE | `/api/v1/sessions/{id}` | Delete the session and all of its data. |
-| GET | `/api/v1/protocols/{area}?language=en` | Protocol steps for an area. |
-| GET | `/api/v1/health` | `starting` until both vLLM servers respond, then `ready`; models, GPU and reachability. |
 
 Areas: `eyes`, `face`, `mouth`, `hands`, `movement`, `posture`, `skin`.
 
