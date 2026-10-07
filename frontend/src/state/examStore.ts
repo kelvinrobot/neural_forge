@@ -9,7 +9,7 @@ import type {
   ServerMessage,
   Step,
 } from "../api/types";
-import { isBilateral } from "../api/types";
+import { isBilateral, normalizeReport, normalizeStep, type RawStep } from "../api/types";
 
 export type ExamPhase =
   | "connecting"
@@ -103,8 +103,11 @@ function outcomeStatus(type: string, current: StepRunStatus | undefined): StepRu
   return current === "repeated" ? "repeated" : "completed";
 }
 
-function livePoint(live: LiveValue): LivePoint {
-  return { t: performance.now() / 1000, values: isBilateral(live) ? [live.right, live.left] : [live.value] };
+/** Only numeric live values are plotted; text states such as "seated" are shown as chips only. */
+function livePoint(live: LiveValue): LivePoint | null {
+  const values = isBilateral(live) ? [live.right, live.left] : [live.value];
+  if (!values.every((value): value is number => typeof value === "number" && Number.isFinite(value))) return null;
+  return { t: performance.now() / 1000, values };
 }
 
 export const useExamStore = create<ExamState>((set, get) => ({
@@ -132,7 +135,8 @@ export const useExamStore = create<ExamState>((set, get) => ({
         set({ phase: "ready_to_start", displayText: text ?? "" });
         return;
       case "step_preview": {
-        const { step, repeat_number } = message;
+        const step = normalizeStep(message.step as unknown as RawStep);
+        const repeat_number = message.repeat_number ?? 1;
         const steps = get().steps.some((existing) => existing.id === step.id)
           ? get().steps.map((existing) => (existing.id === step.id ? step : existing))
           : [...get().steps, step];
@@ -177,11 +181,12 @@ export const useExamStore = create<ExamState>((set, get) => ({
         });
         return;
       case "step_progress": {
-        const history = message.live
-          ? [...get().liveHistory, livePoint(message.live)].filter(
-              (point) => performance.now() / 1000 - point.t <= LIVE_HISTORY_SECONDS,
-            )
-          : get().liveHistory;
+        const point = message.live ? livePoint(message.live) : null;
+        const previous = get().liveHistory;
+        const sameSeries = point !== null && previous.every((item) => item.values.length === point.values.length);
+        const history = point
+          ? [...(sameSeries ? previous : []), point].filter((item) => performance.now() / 1000 - item.t <= LIVE_HISTORY_SECONDS)
+          : previous;
         set({
           phase: get().phase === "countdown" || get().phase === "positioning" ? "collecting" : get().phase,
           progress: {
@@ -238,7 +243,7 @@ export const useExamStore = create<ExamState>((set, get) => ({
         set({ phase: "analysing", analysisStage: text ?? message.stage });
         return;
       case "report_ready":
-        set({ phase: "report", report: message.report });
+        set({ phase: "report", report: normalizeReport(message.report) });
         return;
       case "error":
       case "pong":

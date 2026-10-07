@@ -64,8 +64,81 @@ export interface Step {
   repeatable: boolean;
 }
 
+/** Step as sent over the wire: tips and safety_note are strings where "" means none (a tips list is also accepted). */
+export type RawStep = Omit<Step, "tips" | "safety_note"> & {
+  tips?: string | string[] | null;
+  safety_note?: string | null;
+};
+
 export interface ExamDetail extends ExamSummary {
   steps: Step[];
+}
+
+/** Normalises a step from the backend so the UI can rely on its shape. */
+export function normalizeStep(raw: RawStep): Step {
+  const tips = Array.isArray(raw.tips)
+    ? raw.tips
+    : (raw.tips ?? "")
+        .split(/(?<=[.!?])\s+/)
+        .map((tip) => tip.trim());
+  const safety = typeof raw.safety_note === "string" ? raw.safety_note.trim() : "";
+  return {
+    ...raw,
+    title: raw.title ?? raw.id,
+    display_text: raw.display_text ?? "",
+    speech_text: raw.speech_text ?? "",
+    tips: tips.filter((tip) => tip.length > 0),
+    safety_note: safety.length > 0 ? safety : null,
+  };
+}
+
+function asList(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  if (typeof value === "string" && value.trim()) return [value.trim()];
+  return [];
+}
+
+/** Normalises list fields of a report so rendering never depends on the exact wire shape. */
+export function normalizeReport(raw: Report): Report {
+  const interpretation: Partial<Interpretation> = raw.interpretation ?? {};
+  const quality: Partial<ReportQuality> = raw.quality ?? {};
+  return {
+    ...raw,
+    findings: (raw.findings ?? []).map((finding) => ({
+      ...finding,
+      measurements: Array.isArray(finding.measurements) ? finding.measurements : [],
+      confidence: typeof finding.confidence === "number" ? finding.confidence : 0,
+      explanation: finding.explanation ?? "",
+    })),
+    interpretation: {
+      summary: interpretation.summary ?? "",
+      patient_message: interpretation.patient_message ?? "",
+      possible_conditions: (interpretation.possible_conditions ?? []).map((condition) => ({
+        ...condition,
+        likelihood: condition.likelihood ?? "",
+        reasoning: condition.reasoning ?? "",
+        supporting_findings: asList(condition.supporting_findings),
+      })),
+      recommendations: asList(interpretation.recommendations),
+      referral_urgency: interpretation.referral_urgency ?? raw.referral_urgency ?? "none",
+      source: interpretation.source === "ai_model" ? "ai_model" : "rule_based",
+    },
+    steps: Array.isArray(raw.steps) ? raw.steps : [],
+    quality: {
+      completed_steps: quality.completed_steps ?? 0,
+      total_steps: quality.total_steps ?? 0,
+      skipped_steps: quality.skipped_steps ?? 0,
+      incomplete_steps: quality.incomplete_steps ?? 0,
+      notes: asList(quality.notes),
+    },
+    patient: raw.patient ?? { age: null, sex: "unspecified", symptoms: [], medical_history: [], notes: "" },
+    disclaimer: raw.disclaimer ?? "",
+    speech_summary: raw.speech_summary ?? "",
+  };
+}
+
+export function normalizeExam(raw: ExamSummary & { steps?: RawStep[] | null }): ExamDetail {
+  return { ...raw, steps: (raw.steps ?? []).map(normalizeStep) };
 }
 
 export type Sex = "male" | "female" | "other" | "unspecified";
@@ -121,7 +194,7 @@ export type ControlAction = "start" | "ready" | "pause" | "resume" | "skip" | "s
 
 export interface LiveSingle {
   label: string;
-  value: number;
+  value: number | string;
   unit: string;
 }
 
@@ -327,7 +400,7 @@ export interface Interpretation {
   possible_conditions: PossibleCondition[];
   recommendations: string[];
   referral_urgency: ReferralUrgency;
-  source: string;
+  source: "ai_model" | "rule_based";
 }
 
 export interface ReportStep {

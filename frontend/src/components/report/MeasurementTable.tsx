@@ -19,8 +19,14 @@ export function MeasurementTable({ measurements }: { measurements: Measurement[]
           {measurements.map((measurement, index) => (
             <tr key={`${measurement.name}-${measurement.side ?? ""}-${index}`} className="border-b border-ink-50 last:border-0 dark:border-ink-800">
               <td className="py-2 pr-3 text-ink-800 dark:text-ink-100">{measurement.name}</td>
-              <td className="py-2 pr-3 font-semibold tabular-nums text-ink-900 dark:text-ink-50">{formatValue(measurement.value, measurement.unit)}</td>
-              <td className="py-2 pr-3 text-ink-500 dark:text-ink-400">{measurement.reference ?? "–"}</td>
+              <td className="py-2 pr-3 font-semibold tabular-nums text-ink-900 dark:text-ink-50">
+                {measurement.value === null || measurement.value === undefined ? (
+                  <span className="font-normal italic text-ink-400">not measured</span>
+                ) : (
+                  formatValue(measurement.value, measurement.unit)
+                )}
+              </td>
+              <td className="py-2 pr-3 text-ink-500 dark:text-ink-400">{measurement.reference?.trim() ? measurement.reference : "–"}</td>
               {showSide && <td className="py-2 text-ink-600 dark:text-ink-300">{measurement.side ? titleCase(measurement.side) : "–"}</td>}
             </tr>
           ))}

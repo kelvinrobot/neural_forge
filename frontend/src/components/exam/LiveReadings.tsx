@@ -6,6 +6,9 @@ function describe(live: LiveValue): string {
   if (isBilateral(live)) {
     return `${live.label} R ${formatValue(live.right, live.unit)} / L ${formatValue(live.left, live.unit)}`;
   }
+  if (typeof live.value === "string") {
+    return `${live.label}: ${live.value.charAt(0).toUpperCase()}${live.value.slice(1)}`;
+  }
   return `${live.label} ${formatValue(live.value, live.unit)}`;
 }
 

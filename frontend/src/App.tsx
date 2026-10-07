@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
+import { ErrorBoundary } from "./components/ui/ErrorBoundary";
 import { Toaster } from "./components/ui/Toast";
 import { ExamPage } from "./pages/ExamPage";
 import { HomePage } from "./pages/HomePage";
@@ -38,13 +39,15 @@ export function App() {
       <div className="flex min-h-screen flex-col">
         <Header />
         <main className={`mx-auto w-full flex-1 px-4 sm:px-6 ${onExam ? "max-w-[1600px] py-4" : "max-w-7xl py-8"}`}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/exam/:examId" element={<PatientSetupPage />} />
-            <Route path="/exam/:examId/live" element={<ExamPage />} />
-            <Route path="/report/:sessionId" element={<ReportPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <ErrorBoundary key={location.pathname}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/exam/:examId" element={<PatientSetupPage />} />
+              <Route path="/exam/:examId/live" element={<ExamPage />} />
+              <Route path="/report/:sessionId" element={<ReportPage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </ErrorBoundary>
         </main>
         {!onExam && <Footer />}
       </div>
