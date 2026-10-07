@@ -7,7 +7,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.rtmw_pose import PoseResult
+from neural_forge.models.neural_forge_pose import PoseResult
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import joint_angle_degrees, vector_angle_degrees
 from neural_forge.services.landmark_service import TrackerName
@@ -153,7 +153,7 @@ class RangeOfMotionAgent(AreaAgent):
                             f"Limited {description}",
                             FlagSeverity.LOW,
                             self.shortfall_confidence(maximum, threshold, confidence),
-                            f"The {side} side reached {maximum:.0f} degrees of {description}, below the educational reference of {threshold:.0f} degrees.",
+                            f"The {side} side reached {maximum:.0f} degrees of {description}, below the screening reference of {threshold:.0f} degrees.",
                             role_steps,
                             evidence=[f"{maximum:.0f} degrees"],
                             side=side,  # type: ignore[arg-type]
@@ -180,7 +180,7 @@ class RangeOfMotionAgent(AreaAgent):
             repetitions = self.count_events(step_instance, "repetitions")
             metrics.append(self.summary_reading("repetitions", float(repetitions), "count", f"Repetitions completed during {step_instance}.", self.data_confidence([step_instance]), step_instance))
         return self.build_result(
-            description="Joint range of motion: " + (", ".join(flag.title for flag in flags) if flags else "within educational reference ranges") + ".",
+            description="Joint range of motion: " + (", ".join(flag.title for flag in flags) if flags else "within screening reference ranges") + ".",
             metrics=metrics,
             flags=flags,
             confidence=self.data_confidence(self.steps_with_data),

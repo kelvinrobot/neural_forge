@@ -174,7 +174,7 @@ class GaitAgent(AreaAgent):
                 flags.append(self.make_flag("shuffling_gait", "Short, shuffling steps", FlagSeverity.MODERATE, self.shortfall_confidence(analysis.step_length, shuffle_threshold, walking_confidence), "Steps were short relative to leg length, which can occur with Parkinsonism or fear of falling.", walking_steps, evidence=[f"step length proxy {analysis.step_length:.2f} leg lengths"]))
             cadence_threshold = self.threshold_float("cadence_low_steps_per_minute")
             if analysis.cadence < cadence_threshold:
-                flags.append(self.make_flag("slow_cadence", "Slow walking rhythm", FlagSeverity.LOW, self.shortfall_confidence(analysis.cadence, cadence_threshold, walking_confidence), "Fewer steps per minute than the educational reference.", walking_steps, evidence=[f"cadence {analysis.cadence:.0f} steps/min"]))
+                flags.append(self.make_flag("slow_cadence", "Slow walking rhythm", FlagSeverity.LOW, self.shortfall_confidence(analysis.cadence, cadence_threshold, walking_confidence), "Fewer steps per minute than the screening reference.", walking_steps, evidence=[f"cadence {analysis.cadence:.0f} steps/min"]))
             if np.isfinite(analysis.right_arm_swing) and np.isfinite(analysis.left_arm_swing):
                 swing_asymmetry = asymmetry_ratio(analysis.right_arm_swing, analysis.left_arm_swing)
                 metrics.append(self.summary_reading("arm_swing_asymmetry", swing_asymmetry, "ratio", "Relative left-right difference in arm swing.", walking_confidence, walking_label))

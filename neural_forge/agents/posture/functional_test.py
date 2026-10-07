@@ -8,7 +8,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.rtmw_pose import PoseResult
+from neural_forge.models.neural_forge_pose import PoseResult
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import joint_angle_degrees, midpoint
 from neural_forge.services.landmark_service import TrackerName
@@ -208,7 +208,7 @@ class FunctionalTestAgent(AreaAgent):
                 metrics.append(self.summary_reading("tug_turn_time", state.turn_time, "s", "Time of the furthest point from the chair.", confidence * 0.7, step_instance))
                 threshold = self.threshold_float("tug_flag_seconds")
                 if tug_seconds > threshold:
-                    flags.append(self.make_flag("slow_timed_up_and_go", "Slow Timed Up and Go", FlagSeverity.MODERATE, self.exceedance_confidence(tug_seconds, threshold, confidence), f"The Timed Up and Go took {tug_seconds:.1f} seconds, above the educational reference of {threshold:.0f} seconds, which is linked to higher fall risk.", [step_instance], evidence=[f"{tug_seconds:.1f} s"]))
+                    flags.append(self.make_flag("slow_timed_up_and_go", "Slow Timed Up and Go", FlagSeverity.MODERATE, self.exceedance_confidence(tug_seconds, threshold, confidence), f"The Timed Up and Go took {tug_seconds:.1f} seconds, above the screening reference of {threshold:.0f} seconds, which is linked to higher fall risk.", [step_instance], evidence=[f"{tug_seconds:.1f} s"]))
             else:
                 metrics.append(self.summary_reading("sit_to_stand_repetitions", float(state.completed_cycles), "count", "Completed sit-to-stand cycles.", confidence, step_instance))
                 metrics.append(self.summary_reading("failed_rise_attempts", float(state.failed_rises), "count", "Attempts to stand that did not reach full standing.", confidence, step_instance))
@@ -217,13 +217,13 @@ class FunctionalTestAgent(AreaAgent):
                     metrics.append(self.summary_reading("five_times_sit_to_stand", sts_seconds, "s", "Time from 'go' to the end of the fifth sit-to-stand.", confidence, step_instance))
                     threshold = self.threshold_float("sts_flag_seconds")
                     if sts_seconds > threshold:
-                        flags.append(self.make_flag("slow_sit_to_stand", "Slow five-times sit-to-stand", FlagSeverity.MODERATE, self.exceedance_confidence(sts_seconds, threshold, confidence), f"Five sit-to-stands took {sts_seconds:.1f} seconds, above the educational reference of {threshold:.0f} seconds, suggesting reduced leg strength.", [step_instance], evidence=[f"{sts_seconds:.1f} s"]))
+                        flags.append(self.make_flag("slow_sit_to_stand", "Slow five-times sit-to-stand", FlagSeverity.MODERATE, self.exceedance_confidence(sts_seconds, threshold, confidence), f"Five sit-to-stands took {sts_seconds:.1f} seconds, above the screening reference of {threshold:.0f} seconds, suggesting reduced leg strength.", [step_instance], evidence=[f"{sts_seconds:.1f} s"]))
                 else:
                     limitations.append(f"Only {state.completed_cycles} of {required_repetitions} sit-to-stand cycles were detected during {step_instance}.")
                 if state.failed_rises >= 1:
                     flags.append(self.make_flag("difficulty_rising", "Difficulty rising from the chair", FlagSeverity.LOW, confidence * 0.6, "One or more attempts to stand up did not reach full standing.", [step_instance], evidence=[f"{state.failed_rises} failed attempt(s)"]))
         return self.build_result(
-            description="Functional tests: " + (", ".join(flag.title for flag in flags) if flags else "completed within educational reference times") + ".",
+            description="Functional tests: " + (", ".join(flag.title for flag in flags) if flags else "completed within screening reference times") + ".",
             metrics=metrics,
             flags=flags,
             confidence=self.data_confidence(self.steps_with_data),

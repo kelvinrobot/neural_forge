@@ -11,7 +11,7 @@ short_description:  Health care visual screening backend (agents + vLLM)
 
 # Neural Forge – AI Visual Diagnostic (backend)
 
-Neural Forge is a Health care, real-time, webcam-based visual screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of Python agents measures landmarks, colours, movements and timings, compares them with educational thresholds, and produces **screening flags with confidence scores, it then  diagnoses.
+Neural Forge is a real-time, camera-based clinical screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of Python agents measures landmarks, colours, movements and timings, compares them with screening thresholds, and produces **screening findings with confidence scores** for clinician review.
 
 
 ## Architecture
@@ -88,7 +88,7 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 ## Configuration
 
 * `config/protocols/*.yaml` – patient-facing steps (multilingual text keyed by language code).
-* `config/thresholds/*.yaml` – educational screening thresholds per agent.
+* `config/thresholds/*.yaml` – screening thresholds per agent (defaults pending clinical validation).
 * `config/quality.yaml` – camera gating, colour calibration, aggregation.
 * `config/reasoning/` – reference ranges and sign-to-condition rules.
 * `config/safety_rules.yaml` – language rules, red flags, disclaimer.

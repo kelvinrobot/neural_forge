@@ -48,7 +48,7 @@ class CreateSessionRequest(BaseModel):
     def require_consent(cls, value: bool) -> bool:
         """Reject requests that do not explicitly give consent."""
         if value is not True:
-            raise ValueError("consent must be true to start an educational screening session")
+            raise ValueError("consent must be true to start a screening examination")
         return value
 
 
@@ -61,7 +61,7 @@ class CreateSessionResponse(BaseModel):
     total_steps: int
     steps: list[ProtocolStepView]
     websocket_path: str
-    educational_notice: str
+    screening_notice: str
 
 
 class QAEntry(BaseModel):

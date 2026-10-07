@@ -12,11 +12,11 @@ from neural_forge.models.classifiers import (
     ZeroShotClassifier,
 )
 from neural_forge.models.llm_clients import VLLMChatClient
-from neural_forge.models.medsiglip_encoder import MedSigLIPEncoder
-from neural_forge.models.mediapipe_face import MediaPipeFaceModel
-from neural_forge.models.mediapipe_hands import MediaPipeHandModel
-from neural_forge.models.rtmw_pose import RTMWPoseEstimator
-from neural_forge.models.yoloe_detector import YOLOELesionDetector
+from neural_forge.models.medsiglip_neural_forge import MedSigLIPEncoder
+from neural_forge.models.neural_forge_face import MediaPipeFaceModel
+from neural_forge.models.neural_forge_hands import MediaPipeHandModel
+from neural_forge.models.neural_forge_pose import RTMWPoseEstimator
+from neural_forge.models.neural_forge_detector import YOLOELesionDetector
 
 
 class ModelRegistry:

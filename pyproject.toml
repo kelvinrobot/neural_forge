@@ -5,10 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "neural-forge"
 version = "1.0.0"
-description = "Educational real-time webcam visual screening backend built as a team of agents."
+description = "Real-time camera-based clinical screening backend built as a team of agents."
 readme = "README.md"
 requires-python = ">=3.11,<3.12"
-license = { text = "Proprietary - educational use" }
+license = { text = "Proprietary" }
 dependencies = [
     "fastapi>=0.115,<1.0",
     "uvicorn[standard]>=0.30",

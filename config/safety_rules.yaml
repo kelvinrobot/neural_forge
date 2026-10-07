@@ -2,9 +2,9 @@
 
 disclaimer:
   en: >-
-    Educational screening only. Neural Forge is not a medical device and does not diagnose any condition.
-    Webcam measurements can be wrong. Always consult a qualified health professional about your health,
-    and seek emergency care for sudden or severe symptoms.
+    Neural Forge provides camera-based screening findings to support clinical assessment. Results are not a
+    diagnosis and should be reviewed by a qualified clinician. Measurements can be affected by lighting,
+    positioning and camera quality. Seek emergency care for sudden or severe symptoms.
 
 condition_name_prefix:
   en: Possible
@@ -95,8 +95,8 @@ red_flags:
 
 standard_limitations:
   en:
-    - This is an educational webcam screening, not a medical examination or diagnosis.
+    - This is a camera-based screening examination; findings should be confirmed by a clinician.
     - Measurements depend on lighting, camera quality, distance and how each step was performed.
     - Colour findings are affected by skin tone, lighting colour and camera processing.
-    - Thresholds are educational defaults and have not been clinically validated.
+    - Screening thresholds are default values pending clinical validation.
     - A normal result does not rule out a medical condition.

@@ -1,6 +1,7 @@
 # Eye area thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 eyelid:
   baseline_steps: [look_straight]
@@ -75,7 +76,7 @@ eye_appearance:
   consultation_probability_low: 0.35
   consultation_probability_high: 0.65
   consultation_question: >-
-    This is a close-up photograph of both eyes taken with a webcam for an educational screening.
+    This is a close-up photograph of both eyes taken with a webcam for a clinical screening.
     Describe the sclera, conjunctiva, eyelids and the rim of the cornea, and say whether redness,
     yellowish eyelid plaques or a grey-white corneal ring are visible.
   label_flags:

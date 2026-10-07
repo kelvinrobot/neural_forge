@@ -1,6 +1,7 @@
 # Skin area thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 lesion_finder:
   skin_cr_range: [133, 180]
@@ -30,7 +31,7 @@ lesion_classifier:
   consultation_probability_high: 0.60
   consultation_margin_max: 0.15
   consultation_question: >-
-    This is a webcam close-up of a skin area taken for an educational screening.
+    This is a webcam close-up of a skin area taken for a clinical screening.
     Describe the lesion morphology (size, colour, border, surface, distribution) and say which
     skin conditions it most resembles, without making a diagnosis.
   label_flags:

@@ -7,7 +7,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent, BestCropBuffer, CropCandidate, robust_median
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.mediapipe_hands import HandLandmarks
+from neural_forge.models.neural_forge_hands import HandLandmarks
 from neural_forge.schemas.readings import AgentResult, EvidenceCrop, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.colour_utils import clip_box, laplacian_sharpness, skin_mask_ycrcb
 from neural_forge.services.geometry import euclidean_distance, unit_vector, vector_angle_degrees

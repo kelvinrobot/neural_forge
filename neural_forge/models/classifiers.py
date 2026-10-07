@@ -8,7 +8,7 @@ from typing import Any, Literal
 import numpy as np
 
 from neural_forge.core.exceptions import ConfigurationError, ModelNotAvailableError
-from neural_forge.models.medsiglip_encoder import MedSigLIPEncoder
+from neural_forge.models.medsiglip_neural_forge import MedSigLIPEncoder
 from neural_forge.schemas.readings import ClassificationResult
 
 

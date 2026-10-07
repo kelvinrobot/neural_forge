@@ -27,7 +27,7 @@ def make_findings(flags: list[ScreeningFlag]) -> SessionFindings:
         flags=flags,
         overall_confidence=0.6,
         quality=QualitySummary(),
-        educational_notice="notice",
+        screening_notice="notice",
     )
 
 

@@ -184,7 +184,7 @@ class CapillaryRefillAgent(AreaAgent):
                     "Slow capillary refill",
                     FlagSeverity.MODERATE,
                     self.exceedance_confidence(result.refill_seconds, threshold, confidence),
-                    f"Nail colour took {result.refill_seconds:.1f} seconds to return, longer than the educational reference of {threshold:.0f} seconds.",
+                    f"Nail colour took {result.refill_seconds:.1f} seconds to return, longer than the screening reference of {threshold:.0f} seconds.",
                     press_steps + [latest_instance],
                     evidence=[f"refill {result.refill_seconds:.2f} s on {finger_label}"],
                 )

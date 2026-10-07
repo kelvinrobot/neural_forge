@@ -42,9 +42,9 @@ messages:
   analysis_started:
     en: We are now analysing your results. This can take up to a minute.
   rule_summary_flags:
-    en: "The screening measurements raised {count} educational flag(s): {flags}."
+    en: "The screening measurements raised {count} screening flag(s): {flags}."
   rule_summary_none:
-    en: No educational screening thresholds were crossed in the collected data.
+    en: No screening thresholds were crossed in the collected data.
   report_intro:
     en: "{area}: {completed} of {total} steps were completed ({skipped} skipped)."
   report_flags_intro:

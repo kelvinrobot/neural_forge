@@ -6,8 +6,8 @@ Side names always refer to the patient's anatomical side on unmirrored frames.
 import cv2
 import numpy as np
 
-from neural_forge.models.mediapipe_face import FaceLandmarks
-from neural_forge.models.mediapipe_hands import HandLandmarks
+from neural_forge.models.neural_forge_face import FaceLandmarks
+from neural_forge.models.neural_forge_hands import HandLandmarks
 from neural_forge.services.geometry import euclidean_distance, fit_line_direction, midpoint, unit_vector
 
 FACE_FOREHEAD_TOP = 10

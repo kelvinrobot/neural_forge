@@ -8,7 +8,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.rtmw_pose import PoseResult
+from neural_forge.models.neural_forge_pose import PoseResult
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import confidence_ellipse_area, euclidean_distance, midpoint, path_length
 from neural_forge.services.landmark_service import TrackerName
@@ -143,10 +143,10 @@ class BalanceAgent(AreaAgent):
             confidence = self.data_confidence([step_id])
             metrics.append(self.summary_reading("single_leg_stance_time", longest, "s", f"Longest time standing on the {stance} leg.", confidence, step_id, side=stance))  # type: ignore[arg-type]
             if longest < minimum_stance:
-                flags.append(self.make_flag("reduced_single_leg_stance", "Short one-leg standing time", FlagSeverity.MODERATE, self.shortfall_confidence(longest, minimum_stance, confidence), f"Standing on the {stance} leg lasted {longest:.1f} seconds, below the educational reference of {minimum_stance:.0f} seconds; this is linked to higher fall risk.", [step_id], evidence=[f"{longest:.1f} s"], side=stance))  # type: ignore[arg-type]
+                flags.append(self.make_flag("reduced_single_leg_stance", "Short one-leg standing time", FlagSeverity.MODERATE, self.shortfall_confidence(longest, minimum_stance, confidence), f"Standing on the {stance} leg lasted {longest:.1f} seconds, below the screening reference of {minimum_stance:.0f} seconds; this is linked to higher fall risk.", [step_id], evidence=[f"{longest:.1f} s"], side=stance))  # type: ignore[arg-type]
         confidence_values = [value for value in (open_confidence, closed_confidence) if value > 0]
         return self.build_result(
-            description="Standing balance: " + (", ".join(flag.title for flag in flags) if flags else "within educational reference limits") + ".",
+            description="Standing balance: " + (", ".join(flag.title for flag in flags) if flags else "within screening reference limits") + ".",
             metrics=metrics,
             flags=flags,
             confidence=float(np.mean(confidence_values)) if confidence_values else self.data_confidence(self.steps_with_data),

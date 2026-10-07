@@ -23,12 +23,12 @@ ReadingKey = tuple[str, str, str, str | None, str]
 class AggregatorAgent:
     """Collects readings for one session and builds the structured findings."""
 
-    def __init__(self, session_id: str, area: str, aggregation_config: dict[str, Any], educational_notice: str) -> None:
+    def __init__(self, session_id: str, area: str, aggregation_config: dict[str, Any], screening_notice: str) -> None:
         self._session_id = session_id
         self._area = area
         self._min_confidence = float(aggregation_config["min_reading_confidence"])
         self._excluded_flags = {QualityFlag(value) for value in aggregation_config["excluded_quality_flags"]}
-        self._educational_notice = educational_notice
+        self._screening_notice = screening_notice
         self._accepted: dict[ReadingKey, list[Reading]] = defaultdict(list)
         self._discarded: Counter[ReadingKey] = Counter()
         self._frames_assessed = 0
@@ -133,7 +133,7 @@ class AggregatorAgent:
             overall_confidence=self._overall_confidence(agent_results, step_records),
             quality=quality_summary,
             stopped_early=stopped_early,
-            educational_notice=self._educational_notice,
+            screening_notice=self._screening_notice,
         )
 
     @staticmethod

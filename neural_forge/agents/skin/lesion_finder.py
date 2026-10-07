@@ -10,7 +10,7 @@ from neural_forge.agents.base import AgentContext, AreaAgent, BestCropBuffer, Cr
 from neural_forge.core.exceptions import ConfigurationError, ModelInferenceError, ModelNotAvailableError
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.logging import get_logger, log_event
-from neural_forge.models.yoloe_detector import Detection
+from neural_forge.models.neural_forge_detector import Detection
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.colour_utils import crop_image, expand_box, laplacian_sharpness, skin_mask_ycrcb
 

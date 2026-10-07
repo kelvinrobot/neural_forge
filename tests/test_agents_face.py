@@ -8,7 +8,7 @@ from neural_forge.agents.face.face_colour import FaceColourAgent
 from neural_forge.agents.face.facial_expression import FacialExpressionAgent
 from neural_forge.agents.face.facial_symmetry import FacialSymmetryAgent
 from neural_forge.agents.face.pain import PainAgent
-from neural_forge.models.mediapipe_face import FaceLandmarks
+from neural_forge.models.neural_forge_face import FaceLandmarks
 from neural_forge.services import regions
 from tests.synthetic import build_face, make_context, make_frame, skin_image
 

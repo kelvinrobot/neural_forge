@@ -6,7 +6,7 @@ import numpy as np
 
 from neural_forge.agents.base import AgentContext, AreaAgent
 from neural_forge.core.frame_context import FrameContext
-from neural_forge.models.mediapipe_face import FaceLandmarks
+from neural_forge.models.neural_forge_face import FaceLandmarks
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.landmark_service import TrackerName
 

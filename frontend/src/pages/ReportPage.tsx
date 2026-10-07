@@ -20,15 +20,6 @@ import { findingStatusLabel, findingStatusOrder } from "../utils/statusStyles";
 
 const REPORT_POLL_MS = 3000;
 
-function modelsText(models: Report["models"]): string {
-  if (!models) return "";
-  if (typeof models === "string") return models;
-  if (Array.isArray(models)) return models.join(", ");
-  return Object.entries(models)
-    .map(([role, name]) => `${role}: ${name}`)
-    .join(", ");
-}
-
 export function ReportPage() {
   const { sessionId = "" } = useParams();
   const navigate = useNavigate();
@@ -94,7 +85,6 @@ export function ReportPage() {
   const grouped = findingStatusOrder
     .map((status) => ({ status, findings: report.findings.filter((finding: Finding) => finding.status === status) }))
     .filter((group) => group.findings.length > 0);
-  const models = modelsText(report.models);
 
   return (
     <article className="mx-auto max-w-5xl space-y-6">
@@ -139,7 +129,6 @@ export function ReportPage() {
 
       <Card className="text-xs leading-relaxed text-ink-600 dark:text-ink-300">
         <p className="whitespace-pre-line">{report.disclaimer}</p>
-        {models && <p className="mt-2 text-ink-500 dark:text-ink-400">Models: {models}</p>}
       </Card>
     </article>
   );

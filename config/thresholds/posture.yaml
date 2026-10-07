@@ -1,6 +1,7 @@
 # Posture, joint and walking thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 static_posture:
   front_steps: [stand_front]

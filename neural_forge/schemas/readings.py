@@ -16,7 +16,7 @@ class QualityFlag(str, Enum):
 
 
 class FlagSeverity(str, Enum):
-    """Severity of an educational screening flag."""
+    """Severity of a screening flag."""
 
     LOW = "low"
     MODERATE = "moderate"
@@ -71,7 +71,7 @@ class EvidenceCrop(BaseModel):
 
 
 class ScreeningFlag(BaseModel):
-    """An educational screening flag raised when a Python threshold is crossed."""
+    """A screening flag raised when a Python threshold is crossed."""
 
     code: str
     title: str

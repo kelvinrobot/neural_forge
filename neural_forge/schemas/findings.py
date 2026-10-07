@@ -102,7 +102,7 @@ class SessionFindings(BaseModel):
     overall_confidence: float = Field(ge=0.0, le=1.0)
     quality: QualitySummary
     stopped_early: bool = False
-    educational_notice: str
+    screening_notice: str
 
     def to_llm_payload(self) -> dict[str, Any]:
         """Return a compact dictionary for the reasoning model without raw image data."""

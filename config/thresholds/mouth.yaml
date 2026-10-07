@@ -1,6 +1,7 @@
 # Mouth area thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 mouth_movement:
   opening_steps: [open_wide]
@@ -75,11 +76,11 @@ oral_appearance:
       severity: low
   consultation_questions:
     oral_interior: >-
-      This is a webcam photograph of the inside of a mouth taken for an educational screening.
+      This is a webcam photograph of the inside of a mouth taken for a clinical screening.
       Describe the tongue colour and surface and say whether white plaques, pallor or a bluish tint are visible.
     gums: >-
-      This is a webcam photograph of gums with the lips pulled back, taken for an educational screening.
+      This is a webcam photograph of gums with the lips pulled back, taken for a clinical screening.
       Describe the gum colour and contour and say whether they look swollen, red or bleeding.
     lip_corners: >-
-      This is a close-up webcam photograph of a mouth corner taken for an educational screening.
+      This is a close-up webcam photograph of a mouth corner taken for a clinical screening.
       Describe the skin at the corner of the lips and say whether cracks, redness or crusting are visible.

@@ -1,6 +1,7 @@
 # Movement disorder thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 tremor:
   rest_steps: [hands_at_rest]

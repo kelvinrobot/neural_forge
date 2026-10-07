@@ -11,9 +11,9 @@ from neural_forge.core.exceptions import ModelNotAvailableError
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import ConfigRepository
 from neural_forge.core.settings import Settings
-from neural_forge.models.mediapipe_face import FaceLandmarks
-from neural_forge.models.mediapipe_hands import HandLandmarks, HandsResult
-from neural_forge.models.rtmw_pose import BODY_KEYPOINT_INDEX, PoseResult
+from neural_forge.models.neural_forge_face import FaceLandmarks
+from neural_forge.models.neural_forge_hands import HandLandmarks, HandsResult
+from neural_forge.models.neural_forge_pose import BODY_KEYPOINT_INDEX, PoseResult
 from neural_forge.schemas.readings import QualityAssessment, QualityFlag
 from neural_forge.services import regions
 

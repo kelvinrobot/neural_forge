@@ -9,7 +9,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.mediapipe_hands import HandLandmarks
+from neural_forge.models.neural_forge_hands import HandLandmarks
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import asymmetry_ratio, euclidean_distance
 from neural_forge.services.landmark_service import TrackerName
@@ -293,7 +293,7 @@ class CoordinationAgent(AreaAgent):
         description = (
             "Coordination findings: " + "; ".join(flag.title for flag in flags) + "."
             if flags
-            else "Finger-to-nose pointing and rapid hand flipping were within educational reference limits."
+            else "Finger-to-nose pointing and rapid hand flipping were within screening reference limits."
         )
         return self.build_result(
             description=description,

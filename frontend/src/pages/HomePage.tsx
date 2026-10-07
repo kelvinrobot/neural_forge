@@ -21,6 +21,14 @@ const EXAM_ICONS: Record<string, IconName> = {
   skin: "skin",
 };
 
+const MODEL_DISPLAY_NAMES: Record<string, string> = {
+  qwen: "Vision",
+};
+
+function modelDisplayName(key: string): string {
+  return MODEL_DISPLAY_NAMES[key.toLowerCase()] ?? titleCase(key);
+}
+
 function modelStatusText(value: string | ModelStatusDetail): string {
   if (typeof value === "string") return value;
   if (value.status) return value.status;
@@ -149,7 +157,7 @@ export function HomePage() {
             <ul className="grid gap-1.5 text-sm sm:grid-cols-2">
               {models.map(([name, value]) => (
                 <li key={name} className="flex items-center justify-between gap-2 rounded-lg bg-ink-50 px-2.5 py-1.5 dark:bg-ink-800">
-                  <span className="truncate text-ink-700 dark:text-ink-200">{titleCase(name)}</span>
+                  <span className="truncate text-ink-700 dark:text-ink-200">{modelDisplayName(name)}</span>
                   <span className="text-xs font-medium text-ink-500 dark:text-ink-400">{modelStatusText(value)}</span>
                 </li>
               ))}

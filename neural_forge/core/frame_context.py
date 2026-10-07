@@ -5,9 +5,9 @@ from typing import Any
 
 import numpy as np
 
-from neural_forge.models.mediapipe_face import FaceLandmarks
-from neural_forge.models.mediapipe_hands import HandsResult
-from neural_forge.models.rtmw_pose import PoseResult
+from neural_forge.models.neural_forge_face import FaceLandmarks
+from neural_forge.models.neural_forge_hands import HandsResult
+from neural_forge.models.neural_forge_pose import PoseResult
 from neural_forge.schemas.readings import CalibrationInfo, QualityAssessment
 from neural_forge.services.colour_utils import bgr_to_lab
 

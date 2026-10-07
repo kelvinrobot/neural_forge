@@ -4,8 +4,8 @@ from enum import Enum
 from typing import Iterable
 
 from neural_forge.core.frame_context import FrameContext
-from neural_forge.models.mediapipe_face import FaceTracker
-from neural_forge.models.mediapipe_hands import HandTracker
+from neural_forge.models.neural_forge_face import FaceTracker
+from neural_forge.models.neural_forge_hands import HandTracker
 from neural_forge.models.registry import ModelRegistry
 
 

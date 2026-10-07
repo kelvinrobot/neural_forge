@@ -111,9 +111,9 @@ class ConfigRepository:
         data = self.load_yaml(f"thresholds/{area_name.value}.yaml")
         if not isinstance(data, dict):
             raise ConfigurationError(f"Thresholds for '{area_name.value}' must be a mapping")
-        if data.get("educational_defaults") is not True:
+        if data.get("screening_defaults") is not True:
             raise ConfigurationError(
-                f"Thresholds for '{area_name.value}' must declare 'educational_defaults: true'"
+                f"Thresholds for '{area_name.value}' must declare 'screening_defaults: true'"
             )
         return data
 

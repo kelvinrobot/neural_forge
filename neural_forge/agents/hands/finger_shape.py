@@ -8,7 +8,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent, BestCropBuffer, CropCandidate, robust_median
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.mediapipe_hands import HandLandmarks
+from neural_forge.models.neural_forge_hands import HandLandmarks
 from neural_forge.schemas.readings import AgentResult, EvidenceCrop, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.colour_utils import clip_box, laplacian_sharpness, skin_mask_ycrcb
 from neural_forge.services.geometry import euclidean_distance, unit_vector
@@ -200,7 +200,7 @@ class FingerShapeAgent(AreaAgent):
             )
         confidence_values = [value for value in (side_confidence, window_confidence) if value > 0]
         return self.build_result(
-            description=f"Fingertip shape: {len(signs)} clubbing sign(s) detected." if signs else "Fingertip shape measures were within educational reference limits.",
+            description=f"Fingertip shape: {len(signs)} clubbing sign(s) detected." if signs else "Fingertip shape measures were within screening reference limits.",
             metrics=metrics,
             flags=flags,
             confidence=float(np.mean(confidence_values)) if confidence_values else 0.0,

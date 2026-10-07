@@ -400,7 +400,7 @@ class AreaAgent(ABC):
         evidence: list[str] | None = None,
         side: Side | None = None,
     ) -> ScreeningFlag:
-        """Create an educational screening flag."""
+        """Create a screening flag."""
         return ScreeningFlag(
             code=code,
             title=title,

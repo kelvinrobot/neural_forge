@@ -1,4 +1,4 @@
-"""Safety agent: rule-based post-check that keeps every output an educational screening flag."""
+"""Safety agent: rule-based post-check that keeps every output a clinically framed screening finding."""
 
 import re
 from typing import Any
@@ -37,7 +37,7 @@ class SafetyAgent:
         self._hedging_prefixes = [str(prefix).lower() for prefix in rules["hedging_prefixes"]]
 
     def disclaimer(self, language: str) -> str:
-        """Educational disclaimer in the requested language."""
+        """Clinical disclaimer in the requested language."""
         return localize(self._rules["disclaimer"], language) or ""
 
     def standard_limitations(self, language: str) -> list[str]:

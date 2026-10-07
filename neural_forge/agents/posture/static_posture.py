@@ -8,7 +8,7 @@ import numpy as np
 from neural_forge.agents.base import AgentContext, AreaAgent, robust_median
 from neural_forge.core.frame_context import FrameContext
 from neural_forge.core.protocol_loader import base_step_id
-from neural_forge.models.rtmw_pose import PoseResult
+from neural_forge.models.neural_forge_pose import PoseResult
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import angle_from_vertical_degrees, joint_angle_degrees, midpoint, unit_vector
 from neural_forge.services.landmark_service import TrackerName

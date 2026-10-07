@@ -1,6 +1,7 @@
 # Hand area thresholds.
 
-educational_defaults: true
+# Default screening thresholds. Validate them clinically before relying on them for patient care.
+screening_defaults: true
 
 hand_colour:
   palm_steps: [palms]
@@ -53,7 +54,7 @@ finger_shape:
   consultation_probability_low: 0.35
   consultation_probability_high: 0.65
   consultation_question: >-
-    This is a side view of an index fingertip taken with a webcam for an educational screening.
+    This is a side view of an index fingertip taken with a webcam for a clinical screening.
     Describe the shape of the nail and fingertip, and say whether the nail fold angle looks
     flattened or the fingertip looks bulbous, as seen in finger clubbing.
 
@@ -74,5 +75,5 @@ joint_appearance:
   consultation_probability_low: 0.35
   consultation_probability_high: 0.65
   consultation_question: >-
-    This is a photograph of the back of a hand taken with a webcam for an educational screening.
+    This is a photograph of the back of a hand taken with a webcam for a clinical screening.
     Describe the knuckles and finger joints, and say whether any joint looks swollen, red or deformed.

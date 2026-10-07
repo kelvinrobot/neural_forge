@@ -4,7 +4,7 @@ import numpy as np
 
 from neural_forge.agents.base import AgentContext, AreaAgent, robust_median
 from neural_forge.core.frame_context import FrameContext
-from neural_forge.models.mediapipe_face import FaceLandmarks
+from neural_forge.models.neural_forge_face import FaceLandmarks
 from neural_forge.schemas.readings import AgentResult, FlagSeverity, Reading, ScreeningFlag
 from neural_forge.services.geometry import euclidean_distance, eye_aspect_ratio, projection_parameter, signed_distance_to_line
 from neural_forge.services.landmark_service import TrackerName
@@ -66,7 +66,7 @@ class EyeAlignmentAgent(AreaAgent):
         ]
 
     def finalize(self) -> AgentResult:
-        """Flag consistent misalignment beyond educational thresholds."""
+        """Flag consistent misalignment beyond screening thresholds."""
         if not self._horizontal_mm:
             return self.insufficient_result("Eye alignment could not be measured in straight-ahead gaze.")
         confidence = self.data_confidence(self.steps_with_data)

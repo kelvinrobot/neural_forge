@@ -68,7 +68,7 @@ async def create_session(
         total_steps=protocol.total_steps,
         steps=[build_step_view(step, protocol.total_steps, session.language) for step in protocol.steps],
         websocket_path=f"/api/v1/ws/{session.area.value}/{session.session_id}",
-        educational_notice=safety.disclaimer(session.language),
+        screening_notice=safety.disclaimer(session.language),
     )
 
 
