@@ -85,6 +85,4 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 * `.env.example` – environment variables (`NF_` prefix for the app).
 
 
-## Tests
-
-Unit tests live in `tests/` and use synthetic landmark sequences  `pytest`.
+Backend_url : 
