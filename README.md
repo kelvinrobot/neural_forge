@@ -86,6 +86,6 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 
 
 Backend_url : https://drrobot9-neural-forge.hf.space 
-frontend_url : https:neural-forge.netlify.app/
+frontend_url : https://neural-forge.netlify.app/
 
 tell me to start my space when u want to test it, it running on a paid GPU i can not leave it on like that it consumes my money.
