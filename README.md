@@ -85,4 +85,5 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 * `.env.example` – environment variables (`NF_` prefix for the app).
 
 
-Backend_url : 
+Backend_url : https://drrobot9-neural-forge.hf.space 
+frontend_url : https:neural_forge.netlify.app/
