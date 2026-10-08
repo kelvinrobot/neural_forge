@@ -11,7 +11,7 @@ short_description:  Health care visual screening backend (agents + vLLM)
 
 # Neural Forge – AI Visual Diagnostic (backend)
 
-Neural Forge is a real-time, camera-based clinical screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of Python agents measures landmarks, colours, movements and timings, compares them with screening thresholds, and produces **screening findings with confidence scores** for clinician review.
+Neural Forge is a real-time, camera-based clinical screening backend. A patient is guided step by step through an examination of one body area (eyes, face, mouth, hands, movement, posture or skin). A team of advanced models and  agents measures landmarks, colours, movements and timings, compares them with screening thresholds, and produces **screening findings with confidence scores** for clinician review.
 
 
 ## Architecture
