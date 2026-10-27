@@ -39,6 +39,32 @@ Neural Forge is a real-time, camera-based clinical screening backend. A patient 
 
 
 
+
+Architectural Evaluation: Mismatch of Data Virtualization Engines (Zetaris)
+
+During the architectural design phase, enterprise data virtualization and federation platforms (specifically Zetaris) were thoroughly evaluated. My technicality and researches has classified data virtualization engines as an architectural anti-pattern for Neural Forge due to four definitive system-level constraints:
+
+1. Per-Frame Latency Budget Exhaustion
+
+• Neural Forge Requirement: The pipeline ingests live video at 10–30 FPS over WebSockets, dictating a strict processing budget of 33.3ms to 100ms per frame for decoding, quality filtering, color calibration, and landmark tracking.
+• The Incompatibility: Zetaris is a federated SQL query engine built to translate text or structured commands into multi-source database queries (e.g., Snowflake, Oracle, S3). Query parsing, semantic mapping, remote network round-trips, and data stitching introduce latencies measured in hundreds of milliseconds or seconds, which would instantly break the real-time frame pipeline and trigger catastrophic backpressure frame drops.
+
+2. Payload Paradigm Mismatch
+
+• Neural Forge Requirement: The streaming pipeline handles binary image payloads (JPEG base64 byte streams) transformed into multi-dimensional NumPy arrays and PyTorch tensors for computer vision models (YOLOE, MedSigLIP).
+• The Incompatibility: Zetaris virtualizes relational, tabular, and semi-structured business data (rows, columns, JSON logs). It possesses no native mechanisms to ingest high-frequency binary media streams, run local matrix operations, or handle spatial coordinate tracking.
+
+3. State Ephemerality vs. Cold Storage Execution
+
+• Neural Forge Requirement: The platform acts as a self-contained, stateless execution loop. To maintain absolute clinical security and compliance, raw video frames are processed entirely in-memory and instantly dropped unless specific crops are intentionally flagged (NF_SAVE_REPORT_CROPS=true).
+• The Incompatibility: Zetaris operates on the assumption that data permanently resides in static distributed databases or data lakes that need to be searched. Because Neural Forge does not store patient sessions or build a persistent database of raw frames during the live exam, there is no underlying database infrastructure for a virtualization engine to connect to or query.
+
+4. Deterministic Local Rules vs. Dynamic Semantic Queries
+
+• Neural Forge Requirement: Agent clinical logic, step workflows, and threshold safety guardrails are explicitly defined in local configuration matrices (config/protocols/*.yaml, config/thresholds/*.yaml). These files reside inside the runtime container for instant execution and deterministic state management.
+• The Incompatibility: Zetaris is designed to solve data silo problems across disparate corporate departments. Neural Forge has zero data silos; its configuration layer is centralized, lightweight, and tightly integrated into the core application code, rendering external data federation layers entirely redundant.
+
+
 ## Examination flow
 
 For every step of `config/protocols/<area>.yaml` the orchestrator:
