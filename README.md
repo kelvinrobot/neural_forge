@@ -84,8 +84,4 @@ Send frames as JPEG (recommended 640–960 px wide, 10–30 fps) with the camera
 * `config/zero_shot_prompts.yaml` – MedSigLIP prompts and YOLOE detection prompts.
 * `.env.example` – environment variables (`NF_` prefix for the app).
 
-
-Backend_url : https://drrobot9-neural-forge.hf.space 
-frontend_url : https://neural-forge.netlify.app/
-
-tell me to start my space when u want to test it, it running on a paid GPU i can not leave it on like that it consumes my money.
+My goal is to make my late grand mother proud i promised her i will save the world with my health tech solutions.
