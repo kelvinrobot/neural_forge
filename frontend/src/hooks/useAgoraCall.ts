@@ -1,9 +1,8 @@
 import type { IAgoraRTCClient, ICameraVideoTrack, IMicrophoneAudioTrack, NetworkQuality } from "agora-rtc-sdk-ng";
 import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
+import type { CallToken } from "../api/types";
 
-export const AGORA_APP_ID = import.meta.env.VITE_AGORA_APP_ID?.trim() ?? "";
-
-export type CallState = "joining" | "joined" | "error";
+export type CallState = "joining" | "joined" | "token_error" | "error";
 
 export type ConnectionQuality = "unknown" | "good" | "fair" | "poor" | "down";
 
@@ -27,25 +26,36 @@ function describeError(error: unknown): string {
 }
 
 interface AgoraCallOptions {
-  channel: string;
+  fetchToken: () => Promise<CallToken>;
   localRef: RefObject<HTMLDivElement>;
   remoteRef: RefObject<HTMLDivElement>;
 }
 
-export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions) {
+export function useAgoraCall({ fetchToken, localRef, remoteRef }: AgoraCallOptions) {
   const [state, setState] = useState<CallState>("joining");
   const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
   const [remoteVideo, setRemoteVideo] = useState(false);
   const [remotePresent, setRemotePresent] = useState(false);
   const [micOn, setMicOn] = useState(true);
   const [cameraOn, setCameraOn] = useState(true);
   const [quality, setQuality] = useState<ConnectionQuality>("unknown");
   const tracksRef = useRef<[IMicrophoneAudioTrack, ICameraVideoTrack] | null>(null);
+  const fetchTokenRef = useRef(fetchToken);
 
   useEffect(() => {
-    if (!AGORA_APP_ID) return undefined;
+    fetchTokenRef.current = fetchToken;
+  });
+
+  useEffect(() => {
     let cancelled = false;
     let client: IAgoraRTCClient | null = null;
+    setState("joining");
+    setError(null);
+    setRemoteVideo(false);
+    setRemotePresent(false);
+    setMicOn(true);
+    setCameraOn(true);
 
     const release = () => {
       tracksRef.current?.forEach((track) => {
@@ -61,6 +71,14 @@ export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions)
     };
 
     const start = async () => {
+      let credentials: CallToken;
+      try {
+        credentials = await fetchTokenRef.current();
+      } catch {
+        if (!cancelled) setState("token_error");
+        return;
+      }
+      if (cancelled) return;
       try {
         const { default: AgoraRTC } = await import("agora-rtc-sdk-ng");
         if (cancelled) return;
@@ -93,6 +111,14 @@ export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions)
           setRemotePresent(false);
         });
         rtc.on("network-quality", (stats) => setQuality(qualityFrom(stats)));
+        rtc.on("token-privilege-will-expire", async () => {
+          try {
+            const renewed = await fetchTokenRef.current();
+            await rtc.renewToken(renewed.token);
+          } catch {
+            // The call continues until the current token expires.
+          }
+        });
         rtc.on("connection-state-change", (current, _previous, reason) => {
           if (current === "DISCONNECTED" && reason !== "LEAVE" && !cancelled) {
             setError("The video connection was lost. Check your internet connection.");
@@ -100,7 +126,7 @@ export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions)
           }
         });
 
-        await rtc.join(AGORA_APP_ID, channel, null, null);
+        await rtc.join(credentials.app_id, credentials.channel_name, credentials.token, credentials.uid);
         if (cancelled) return;
         await rtc.publish(tracks);
         if (!cancelled) setState("joined");
@@ -119,7 +145,9 @@ export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions)
       window.removeEventListener("pagehide", release);
       release();
     };
-  }, [channel, localRef, remoteRef]);
+  }, [attempt, localRef, remoteRef]);
+
+  const retry = useCallback(() => setAttempt((count) => count + 1), []);
 
   const toggleMic = useCallback(() => {
     const microphone = tracksRef.current?.[0];
@@ -135,5 +163,5 @@ export function useAgoraCall({ channel, localRef, remoteRef }: AgoraCallOptions)
     setCameraOn(!cameraOn);
   }, [cameraOn]);
 
-  return { state, error, remoteVideo, remotePresent, micOn, cameraOn, quality, toggleMic, toggleCamera };
+  return { state, error, remoteVideo, remotePresent, micOn, cameraOn, quality, retry, toggleMic, toggleCamera };
 }

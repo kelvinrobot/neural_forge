@@ -116,7 +116,6 @@ export function JoinDoctorPage() {
             ))}
             {fileInput("certificate", "Certificate")}
             {fileInput("identity", "Photo ID")}
-            <p className="text-xs text-ink-500 dark:text-ink-400 sm:col-span-2">This is a preview. Nothing you enter or upload is sent.</p>
             <Button type="submit" className="sm:col-span-2 sm:justify-self-start">
               Submit registration
             </Button>

@@ -174,7 +174,7 @@ export function ConsultationPage() {
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_380px]">
       <div className="space-y-2">
         <h1 className="text-lg font-semibold text-ink-900 dark:text-ink-50">Consultation with {doctorName}</h1>
-        <VideoCall channel={consultation.channel_name} remoteName={doctorName} onEnd={() => void end("patient")} ending={ending} />
+        <VideoCall fetchToken={() => api.callToken(consultationId, "patient")} remoteName={doctorName} onEnd={() => void end("patient")} ending={ending} />
       </div>
       {report ? (
         <ReportSummaryPanel report={report} />

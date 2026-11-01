@@ -1,6 +1,7 @@
 import {
   normalizeExam,
   normalizeReport,
+  type CallToken,
   type Consultation,
   type CreateConsultationRequest,
   type CreateSessionRequest,
@@ -104,6 +105,10 @@ export const api = {
     );
     return response.consultations;
   },
+  callToken: (consultationId: string, role: "patient" | "doctor", code = "") =>
+    request<CallToken>(
+      `${consultationPath(consultationId)}/token?role=${role}${role === "doctor" ? `&code=${encodeURIComponent(code)}` : ""}`,
+    ),
   acceptConsultation: (consultationId: string, code: string) =>
     request<Consultation>(`${consultationPath(consultationId)}/accept?code=${encodeURIComponent(code)}`, { method: "POST" }),
   declineConsultation: (consultationId: string, code: string) =>

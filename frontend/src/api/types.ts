@@ -473,3 +473,11 @@ export interface CreateConsultationRequest {
 export interface PortalLoginResponse {
   professional_id: string;
 }
+
+export interface CallToken {
+  app_id: string;
+  channel_name: string;
+  uid: number;
+  token: string;
+  expires_at: number;
+}

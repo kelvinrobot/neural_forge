@@ -115,7 +115,7 @@ function RequestCard({ request, onAccept, onDecline, busy }: { request: Consulta
   );
 }
 
-function CallView({ consultation, onClose }: { consultation: Consultation; onClose: (notice: string | null) => void }) {
+function CallView({ consultation, code, onClose }: { consultation: Consultation; code: string; onClose: (notice: string | null) => void }) {
   const [report, setReport] = useState<Report | null>(null);
   const [reportFailed, setReportFailed] = useState(false);
   const [tab, setTab] = useState<"video" | "report">("video");
@@ -193,7 +193,7 @@ function CallView({ consultation, onClose }: { consultation: Consultation; onClo
       </div>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <div className={`space-y-4 lg:sticky lg:top-20 lg:block lg:self-start ${tab === "video" ? "" : "hidden"}`}>
-          <VideoCall channel={consultation.channel_name} remoteName={consultation.patient_display_name} onEnd={() => void end()} ending={ending} />
+          <VideoCall fetchToken={() => api.callToken(consultation.consultation_id, "doctor", code)} remoteName={consultation.patient_display_name} onEnd={() => void end()} ending={ending} />
           {consultation.patient_note && <p className="rounded-xl bg-ink-50 p-3 text-sm text-ink-700 dark:bg-ink-800 dark:text-ink-200">Patient note: “{consultation.patient_note}”</p>}
           <Card
             title="Notes"
@@ -309,6 +309,7 @@ function Dashboard({ auth, onSignOut, onExpired }: { auth: PortalAuth; onSignOut
       {active ? (
         <CallView
           consultation={active}
+          code={auth.code}
           onClose={(message) => {
             setActive(null);
             setNotice(message);

@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { AGORA_APP_ID, useAgoraCall, type ConnectionQuality } from "../../hooks/useAgoraCall";
+import type { CallToken } from "../../api/types";
+import { useAgoraCall, type ConnectionQuality } from "../../hooks/useAgoraCall";
 import { Button } from "../ui/Button";
 import { Icon } from "../ui/Icon";
 import { Spinner } from "../ui/Spinner";
@@ -13,31 +14,16 @@ const qualityLabel: Record<ConnectionQuality, { text: string; dot: string }> = {
 };
 
 interface VideoCallProps {
-  channel: string;
+  fetchToken: () => Promise<CallToken>;
   remoteName: string;
   onEnd: () => void;
   ending: boolean;
 }
 
-export function VideoCall(props: VideoCallProps) {
-  if (!AGORA_APP_ID) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-ink-900 p-8 text-center text-white">
-        <Icon name="videoOff" size={32} />
-        <p className="font-semibold">Video is not configured</p>
-        <Button variant="danger" icon="phoneOff" onClick={props.onEnd} disabled={props.ending}>
-          End call
-        </Button>
-      </div>
-    );
-  }
-  return <AgoraVideoCall {...props} />;
-}
-
-function AgoraVideoCall({ channel, remoteName, onEnd, ending }: VideoCallProps) {
+export function VideoCall({ fetchToken, remoteName, onEnd, ending }: VideoCallProps) {
   const localRef = useRef<HTMLDivElement>(null);
   const remoteRef = useRef<HTMLDivElement>(null);
-  const call = useAgoraCall({ channel, localRef, remoteRef });
+  const call = useAgoraCall({ fetchToken, localRef, remoteRef });
   const quality = qualityLabel[call.quality];
 
   return (
@@ -50,6 +36,14 @@ function AgoraVideoCall({ channel, remoteName, onEnd, ending }: VideoCallProps) 
               <>
                 <Spinner size={32} label="Connecting" />
                 <p className="text-sm">Connecting to the call…</p>
+              </>
+            ) : call.state === "token_error" ? (
+              <>
+                <Icon name="alert" size={32} className="text-red-400" />
+                <p className="text-sm font-semibold">The video call could not start</p>
+                <Button variant="secondary" size="sm" icon="repeat" onClick={call.retry}>
+                  Retry
+                </Button>
               </>
             ) : call.state === "error" ? (
               <>
