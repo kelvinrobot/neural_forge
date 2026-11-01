@@ -440,3 +440,36 @@ export interface Report {
   disclaimer: string;
   stopped_early: boolean;
 }
+
+export type ConsultationStatus = "requested" | "accepted" | "declined" | "ended" | "expired";
+
+export interface Consultation {
+  consultation_id: string;
+  session_id: string;
+  professional_id: string;
+  professional_name: string;
+  patient_display_name: string;
+  patient_note: string;
+  exam_title: string;
+  overall_status_label: string;
+  referral_urgency: string;
+  status: ConsultationStatus;
+  channel_name: string;
+  created_at: number;
+  accepted_at: number | null;
+  ended_at: number | null;
+  updated_at: number;
+}
+
+export interface CreateConsultationRequest {
+  session_id: string;
+  professional_id: string;
+  professional_name: string;
+  patient_display_name: string;
+  patient_note: string;
+  consent: true;
+}
+
+export interface PortalLoginResponse {
+  professional_id: string;
+}

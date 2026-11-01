@@ -23,7 +23,15 @@ export function Header() {
             <span className="block text-xs text-ink-500 dark:text-ink-400">AI Visual Diagnostics</span>
           </span>
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <Link
+            to="/doctors/join"
+            className="rounded-lg px-2 py-1.5 text-sm font-medium text-ink-700 hover:bg-ink-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-500 dark:text-ink-200 dark:hover:bg-ink-800"
+          >
+            Join as a doctor
+          </Link>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

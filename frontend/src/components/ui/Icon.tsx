@@ -39,7 +39,16 @@ export type IconName =
   | "send"
   | "plus"
   | "chevronRight"
-  | "wifiOff";
+  | "wifiOff"
+  | "video"
+  | "videoOff"
+  | "mic"
+  | "micOff"
+  | "phoneOff"
+  | "search"
+  | "copy"
+  | "upload"
+  | "bell";
 
 const paths: Record<IconName, JSX.Element> = {
   face: (
@@ -199,6 +208,50 @@ const paths: Record<IconName, JSX.Element> = {
     <>
       <path d="M3 3l18 18M8.5 16a5 5 0 0 1 7 0M5 12.5a10 10 0 0 1 4-2.4M14.5 10a10 10 0 0 1 4.5 2.5M2 9a15 15 0 0 1 5-3M11 5.1A15 15 0 0 1 22 9" />
       <circle cx="12" cy="19.5" r="0.6" fill="currentColor" />
+    </>
+  ),
+  video: (
+    <>
+      <rect x="3" y="6.5" width="12.5" height="11" rx="2" />
+      <path d="m15.5 10.5 5.5-3v9l-5.5-3" />
+    </>
+  ),
+  videoOff: (
+    <>
+      <path d="M3 3l18 18M15.5 11.5v-3a2 2 0 0 0-2-2H8.5M5 6.6A2 2 0 0 0 3 8.5v7a2 2 0 0 0 2 2h8.5a2 2 0 0 0 1.6-.8M15.5 10.5l5.5-3v9" />
+    </>
+  ),
+  mic: (
+    <>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" />
+    </>
+  ),
+  micOff: (
+    <>
+      <path d="M3 3l18 18M9 9v2a3 3 0 0 0 5.1 2.1M15 9.5V6a3 3 0 0 0-5.7-1.3M5.5 11a6.5 6.5 0 0 0 10.4 5.2M18.5 11a6.4 6.4 0 0 1-.6 2.7M12 17.5V21" />
+    </>
+  ),
+  phoneOff: (
+    <path d="M3.5 14.5c4.7-4.7 12.3-4.7 17 0l-2.3 2.3-3.2-1.6v-2.4a10 10 0 0 0-6 0v2.4l-3.2 1.6-2.3-2.3Z" />
+  ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </>
+  ),
+  copy: (
+    <>
+      <rect x="8.5" y="8.5" width="11" height="11" rx="2" />
+      <path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2" />
+    </>
+  ),
+  upload: <path d="M12 15.5V4.5m0 0L7.5 9M12 4.5 16.5 9M4.5 19.5h15" />,
+  bell: (
+    <>
+      <path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15L6 16.5Z" />
+      <path d="M10 20.5a2 2 0 0 0 4 0" />
     </>
   ),
 };

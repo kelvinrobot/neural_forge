@@ -1,12 +1,15 @@
 import {
   normalizeExam,
   normalizeReport,
+  type Consultation,
+  type CreateConsultationRequest,
   type CreateSessionRequest,
   type CreateSessionResponse,
   type ExamDetail,
   type ExamsResponse,
   type ExamSummary,
   type HealthResponse,
+  type PortalLoginResponse,
   type QuestionResponse,
   type RawStep,
   type Report,
@@ -89,4 +92,24 @@ export const api = {
     }),
   deleteSession: (sessionId: string) =>
     request<unknown>(`/api/v1/sessions/${encodeURIComponent(sessionId)}`, { method: "DELETE" }),
+  createConsultation: (body: CreateConsultationRequest) =>
+    request<Consultation>("/api/v1/consultations", { method: "POST", body: JSON.stringify(body) }),
+  consultation: (consultationId: string) => request<Consultation>(consultationPath(consultationId)),
+  endConsultation: (consultationId: string) => request<Consultation>(`${consultationPath(consultationId)}/end`, { method: "POST" }),
+  portalLogin: (email: string, code: string) =>
+    request<PortalLoginResponse>("/api/v1/portal/login", { method: "POST", body: JSON.stringify({ email, code }) }),
+  professionalConsultations: async (professionalId: string, code: string): Promise<Consultation[]> => {
+    const response = await request<{ consultations: Consultation[] }>(
+      `/api/v1/professionals/${encodeURIComponent(professionalId)}/consultations?code=${encodeURIComponent(code)}`,
+    );
+    return response.consultations;
+  },
+  acceptConsultation: (consultationId: string, code: string) =>
+    request<Consultation>(`${consultationPath(consultationId)}/accept?code=${encodeURIComponent(code)}`, { method: "POST" }),
+  declineConsultation: (consultationId: string, code: string) =>
+    request<Consultation>(`${consultationPath(consultationId)}/decline?code=${encodeURIComponent(code)}`, { method: "POST" }),
 };
+
+function consultationPath(consultationId: string): string {
+  return `/api/v1/consultations/${encodeURIComponent(consultationId)}`;
+}

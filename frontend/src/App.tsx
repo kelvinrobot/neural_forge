@@ -5,9 +5,14 @@ import { Footer } from "./components/layout/Footer";
 import { Header } from "./components/layout/Header";
 import { ErrorBoundary } from "./components/ui/ErrorBoundary";
 import { Toaster } from "./components/ui/Toast";
+import { ConsultDirectoryPage } from "./pages/ConsultDirectoryPage";
+import { ConsultRequestPage } from "./pages/ConsultRequestPage";
+import { ConsultationPage } from "./pages/ConsultationPage";
 import { ExamPage } from "./pages/ExamPage";
 import { HomePage } from "./pages/HomePage";
+import { JoinDoctorPage } from "./pages/JoinDoctorPage";
 import { PatientSetupPage } from "./pages/PatientSetupPage";
+import { PortalPage } from "./pages/PortalPage";
 import { ReportPage } from "./pages/ReportPage";
 import { useSettingsStore } from "./state/settingsStore";
 
@@ -45,6 +50,11 @@ export function App() {
               <Route path="/exam/:examId" element={<PatientSetupPage />} />
               <Route path="/exam/:examId/live" element={<ExamPage />} />
               <Route path="/report/:sessionId" element={<ReportPage />} />
+              <Route path="/consult/:sessionId" element={<ConsultDirectoryPage />} />
+              <Route path="/consult/:sessionId/request/:doctorId" element={<ConsultRequestPage />} />
+              <Route path="/consultation/:consultationId" element={<ConsultationPage />} />
+              <Route path="/portal" element={<PortalPage />} />
+              <Route path="/doctors/join" element={<JoinDoctorPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </ErrorBoundary>

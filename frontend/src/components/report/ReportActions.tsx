@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api/client";
 import type { Report } from "../../api/types";
 import { useExamStore } from "../../state/examStore";
+import { downloadReport } from "../../utils/download";
 import { Button } from "../ui/Button";
 import { Modal } from "../ui/Modal";
 import { toast } from "../ui/Toast";
@@ -12,16 +13,6 @@ export function ReportActions({ report }: { report: Report }) {
   const clearAll = useExamStore((state) => state.clearAll);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
-
-  const downloadJson = () => {
-    const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `neural-forge-${report.exam_id}-${report.report_id}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
-  };
 
   const deleteSession = async () => {
     setDeleting(true);
@@ -43,7 +34,7 @@ export function ReportActions({ report }: { report: Report }) {
       <Button icon="print" onClick={() => window.print()}>
         Print or save as PDF
       </Button>
-      <Button variant="secondary" icon="download" onClick={downloadJson}>
+      <Button variant="secondary" icon="download" onClick={() => downloadReport(report)}>
         Download JSON
       </Button>
       <Button

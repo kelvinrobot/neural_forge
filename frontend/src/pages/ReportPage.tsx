@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { api, ApiError } from "../api/client";
 import type { Finding, Report } from "../api/types";
 import { ConditionCard } from "../components/report/ConditionCard";
+import { ConsultPrompt } from "../components/report/ConsultPrompt";
 import { FindingCard, findingAnchor } from "../components/report/FindingCard";
 import { QualitySection } from "../components/report/QualitySection";
 import { QuestionChat } from "../components/report/QuestionChat";
@@ -90,6 +91,7 @@ export function ReportPage() {
     <article className="mx-auto max-w-5xl space-y-6">
       <UrgentAlert report={report} onSelectFinding={selectFinding} />
       <StatusBanner report={report} />
+      <ConsultPrompt report={report} />
       <ReportActions report={report} />
       <SummaryCard interpretation={report.interpretation} onReadAloud={() => speak(report.speech_summary, { interrupt: true })} readAloudAvailable={supported && Boolean(report.speech_summary)} />
 
